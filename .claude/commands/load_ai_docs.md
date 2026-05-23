@@ -12,11 +12,11 @@ before starting a build or research task.
 /load-ai-docs $ARGUMENTS
 
 Where $ARGUMENTS specifies what to load:
-- "claude" — load all Claude Code docs
-- "dbt" — load all dbt semantic layer docs
-- "semantic" — load semantic model and metrics docs
-- "all" — load everything
-- (specific topic) — e.g. "hooks", "mcp", "metrics"
+- "claude" â€” load all Claude Code docs
+- "dbt" â€” load all dbt semantic layer docs
+- "semantic" â€” load semantic model and metrics docs
+- "all" â€” load everything
+- (specific topic) â€” e.g. "hooks", "mcp", "metrics"
 
 ## Steps
 
