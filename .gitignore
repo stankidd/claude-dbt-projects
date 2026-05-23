@@ -17,3 +17,6 @@ Thumbs.db
 # IDE
 .vscode/settings.json
 settings.local.json
+
+# dbt Cloud
+dbt_cloud.yml
