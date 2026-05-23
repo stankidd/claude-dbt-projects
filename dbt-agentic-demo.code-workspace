@@ -1,0 +1,15 @@
+{
+    "folders": [
+        {
+            "name": "DBT Project",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "target": true,
+            "venv": true,
+            "logs": true
+        }
+    }
+}

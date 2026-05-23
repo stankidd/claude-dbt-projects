@@ -1,0 +1,11 @@
+{% docs __overview__ %}
+# Mammoth Growth DBT Project
+
+This project follows Medallion Architecture (Bronze -> Silver -> Gold).
+
+## Layers
+- **Bronze**: Raw source data, no business logic
+- **Silver**: Cleaned and conformed data
+- **Gold**: Business-ready aggregations and metrics
+
+{% enddocs %}
