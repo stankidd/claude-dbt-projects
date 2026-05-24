@@ -1,0 +1,183 @@
+version: 2
+
+models:
+  - name: bronze_orders
+    description: "Raw orders data from TPCH source, renamed columns only"
+    config:
+      materialized: view
+      tags: ['bronze']
+    columns:
+      - name: order_id
+        description: "Unique order identifier"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to customer"
+        tests:
+          - not_null
+      - name: order_status
+        description: "Order status code"
+        tests:
+          - accepted_values:
+              values: ['O', 'F', 'P']
+      - name: total_price
+        description: "Total order price"
+      - name: order_date
+        description: "Date the order was placed"
+      - name: order_priority
+        description: "Order priority level"
+      - name: ship_priority
+        description: "Ship priority flag"
+      - name: order_comment
+        description: "Free-text comment on the order"
+
+  - name: bronze_lineitem
+    description: "Raw line item data from TPCH source, renamed columns only"
+    config:
+      materialized: view
+      tags: ['bronze']
+    columns:
+      - name: order_id
+        description: "Foreign key to orders"
+        tests:
+          - not_null
+      - name: part_id
+        description: "Foreign key to part"
+      - name: supplier_id
+        description: "Foreign key to supplier"
+      - name: line_number
+        description: "Line number within the order"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Quantity ordered"
+      - name: extended_price
+        description: "Extended price for the line item"
+      - name: discount
+        description: "Discount applied to the line item"
+      - name: tax
+        description: "Tax rate applied to the line item"
+      - name: return_flag
+        description: "Return flag code"
+        tests:
+          - accepted_values:
+              values: ['R', 'A', 'N']
+      - name: line_status
+        description: "Line item status code"
+        tests:
+          - accepted_values:
+              values: ['O', 'F']
+      - name: ship_date
+        description: "Date the item was shipped"
+      - name: commit_date
+        description: "Committed ship date"
+      - name: receipt_date
+        description: "Date the item was received"
+      - name: ship_mode
+        description: "Shipping mode"
+      - name: line_comment
+        description: "Free-text comment on the line item"
+
+  - name: bronze_customer
+    description: "Raw customer data from TPCH source, renamed columns only"
+    config:
+      materialized: view
+      tags: ['bronze']
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: "Customer name"
+      - name: address
+        description: "Customer address"
+      - name: nation_id
+        description: "Foreign key to nation"
+        tests:
+          - not_null
+      - name: phone
+        description: "Customer phone number"
+      - name: account_balance
+        description: "Customer account balance"
+      - name: market_segment
+        description: "Market segment the customer belongs to"
+        tests:
+          - accepted_values:
+              values: ['AUTOMOBILE', 'BUILDING', 'FURNITURE', 'MACHINERY', 'HOUSEHOLD']
+      - name: customer_comment
+        description: "Free-text comment on the customer"
+
+  - name: bronze_supplier
+    description: "Raw supplier data from TPCH source, renamed columns only"
+    config:
+      materialized: view
+      tags: ['bronze']
+    columns:
+      - name: supplier_id
+        description: "Unique supplier identifier"
+        tests:
+          - unique
+          - not_null
+      - name: supplier_name
+        description: "Supplier name"
+      - name: address
+        description: "Supplier address"
+      - name: nation_id
+        description: "Foreign key to nation"
+        tests:
+          - not_null
+      - name: phone
+        description: "Supplier phone number"
+      - name: account_balance
+        description: "Supplier account balance"
+      - name: supplier_comment
+        description: "Free-text comment on the supplier"
+
+  - name: bronze_nation
+    description: "Raw nation data from TPCH source, renamed columns only"
+    config:
+      materialized: view
+      tags: ['bronze']
+    columns:
+      - name: nation_id
+        description: "Unique nation identifier"
+        tests:
+          - unique
+          - not_null
+      - name: nation_name
+        description: "Nation name"
+      - name: region_id
+        description: "Foreign key to region"
+      - name: nation_comment
+        description: "Free-text comment on the nation"
+
+  - name: bronze_part
+    description: "Raw part data from TPCH source, renamed columns only"
+    config:
+      materialized: view
+      tags: ['bronze']
+    columns:
+      - name: part_id
+        description: "Unique part identifier"
+        tests:
+          - unique
+          - not_null
+      - name: part_name
+        description: "Part name"
+      - name: manufacturer
+        description: "Manufacturer of the part"
+      - name: brand
+        description: "Brand of the part"
+      - name: part_type
+        description: "Part type and sub-type description"
+      - name: size
+        description: "Part size"
+      - name: container
+        description: "Container type for the part"
+      - name: retail_price
+        description: "Suggested retail price"
+      - name: part_comment
+        description: "Free-text comment on the part"

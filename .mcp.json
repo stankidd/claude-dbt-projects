@@ -1,15 +1,12 @@
 {
   "mcpServers": {
     "dbt": {
-      "command": "uvx",
-      "args": ["dbt-mcp"],
-      "env": {
-        "DBT_PROJECT_DIR": "C:/Users/Stan/Documents/VScode/mammoth-test",
-        "DBT_PATH": "C:/dbt/dbt.exe",
-        "DBT_HOST": "qz679.us1.dbt.com",
-        "DBT_TOKEN": "dbtu_NELkp5A9HDi4Ky8xo6diidkXBAlzdvZcoUTrECXH0KrKcYMxiA",
-        "DBT_PROD_ENV_ID": "70403104017502"
-      }
+      "command": "C:\\Users\\Stan\\.local\\bin\\uvx.exe",
+      "args": [
+        "--env-file",
+        "C:\\Users\\Stan\\Documents\\VScode\\mammoth-test\\.env.mcp",
+        "dbt-mcp"
+      ]
     }
   }
 }

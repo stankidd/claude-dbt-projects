@@ -21,3 +21,5 @@ settings.local.json
 # dbt Cloud
 dbt_cloud.yml
 .mcp.json
+
+.env.mcp
