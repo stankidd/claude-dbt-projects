@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: sf10_gold_revenue_by_segment
+    description: "SF10 total revenue and order metrics by customer market segment"
+    columns:
+      - name: market_segment
+        description: "Customer market segment"
+        tests:
+          - unique
+          - not_null
+      - name: total_orders
+        description: "Count of distinct orders"
+      - name: total_revenue
+        description: "Sum of net price across all line items"
+        tests:
+          - not_null
+      - name: avg_order_value
+        description: "Average revenue per order"
+        tests:
+          - not_null
+      - name: total_items_sold
+        description: "Total count of line items"
+        tests:
+          - not_null
+      - name: return_rate
+        description: "Fraction of line items returned"
+        tests:
+          - not_null
+
+  - name: sf10_gold_revenue_by_supplier_nation
+    description: "SF10 revenue and volume metrics by supplier nation"
+    columns:
+      - name: supplier_nation
+        description: "Supplier nation name"
+        tests:
+          - unique
+          - not_null
+      - name: total_revenue
+        description: "Sum of net price"
+        tests:
+          - not_null
+      - name: total_quantity
+        description: "Sum of quantity ordered"
+        tests:
+          - not_null
+      - name: total_line_items
+        description: "Count of line items"
+        tests:
+          - not_null
+      - name: avg_discount
+        description: "Average discount applied"
+        tests:
+          - not_null
+      - name: late_shipment_rate
+        description: "Fraction of shipments that were late"
+        tests:
+          - not_null
+
+  - name: sf10_gold_revenue_by_part_type
+    description: "SF10 revenue and volume metrics by part type"
+    columns:
+      - name: part_type
+        description: "Part type/category"
+        tests:
+          - unique
+          - not_null
+      - name: total_revenue
+        description: "Sum of net price"
+        tests:
+          - not_null
+      - name: total_quantity
+        description: "Sum of quantity ordered"
+        tests:
+          - not_null
+      - name: total_line_items
+        description: "Count of line items"
+        tests:
+          - not_null
+      - name: avg_discount
+        description: "Average discount applied"
+        tests:
+          - not_null
+      - name: return_rate
+        description: "Fraction of line items returned"
+        tests:
+          - not_null
