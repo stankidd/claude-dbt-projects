@@ -1,12 +1,29 @@
-version: "1"
-context:
-  active-host: "qz679.us1.dbt.com"
-  active-project: "70403103999640"
-projects:
-  - project-name: "mammoth-test"
-    project-id: "70403103999640"
-    account-name: "Cloud Analytics Consulting, LLC"
-    account-id: "70403103926586"
-    account-host: "qz679.us1.dbt.com"
-    token-name: "cloud-cli-1f66"
-    token-value: "dbtu_WDrCikcodkE_PdAjFvXl84-sCUY14JEH8djuPjrLvDvl10ZvLY"
+name: mammoth_test
+version: '1.0.0'
+config-version: 2
+
+profile: 'mammoth_test'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  mammoth_test:
+    bronze:
+      +materialized: view
+      +tags: ['bronze']
+    silver:
+      +materialized: table
+      +tags: ['silver']
+    gold:
+      +materialized: table
+      +tags: ['gold']
