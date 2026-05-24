@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: tpch_sf10
+    description: "Snowflake sample TPCH dataset at scale factor 10 (60 million rows in lineitem)"
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF10
+    tables:
+      - name: orders
+        description: "Order header data - one row per order"
+      - name: lineitem
+        description: "Order line items - one row per line item"
+      - name: customer
+        description: "Customer master data"
+      - name: supplier
+        description: "Supplier master data"
+      - name: nation
+        description: "Nation reference table"
+      - name: region
+        description: "Region reference table"
+      - name: part
+        description: "Part/product master data"
+      - name: partsupp
+        description: "Part-supplier relationship and pricing"

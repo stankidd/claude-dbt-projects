@@ -1,7 +1,6 @@
 name: mammoth_test
 version: '1.0.0'
 config-version: 2
-
 profile: 'mammoth_test'
 
 model-paths: ["models"]
@@ -19,11 +18,28 @@ clean-targets:
 models:
   mammoth_test:
     bronze:
-      +materialized: view
-      +tags: ['bronze']
+      +enabled: false
     silver:
-      +materialized: table
-      +tags: ['silver']
+      +enabled: false
     gold:
-      +materialized: table
-      +tags: ['gold']
+      +enabled: false
+    tpch_sf1000:
+      bronze:
+        +materialized: view
+        +tags: ['bronze', 'tpch_sf1000']
+      silver:
+        +materialized: table
+        +tags: ['silver', 'tpch_sf1000']
+      gold:
+        +materialized: table
+        +tags: ['gold', 'tpch_sf1000']
+    tpch_sf10:
+      bronze:
+        +materialized: view
+        +tags: ['bronze', 'tpch_sf10']
+      silver:
+        +materialized: table
+        +tags: ['silver', 'tpch_sf10']
+      gold:
+        +materialized: table
+        +tags: ['gold', 'tpch_sf10']

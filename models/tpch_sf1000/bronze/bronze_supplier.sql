@@ -1,5 +1,5 @@
 WITH source AS (
-    SELECT * FROM {{ source('tpch', 'supplier') }}
+    SELECT * FROM {{ source('tpch_sf1000', 'supplier') }}
 )
 
 , renamed AS (

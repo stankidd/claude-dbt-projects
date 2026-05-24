@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: tpch
+  - name: tpch_sf1000
     database: SNOWFLAKE_SAMPLE_DATA
     schema: TPCH_SF1000
     tables:
