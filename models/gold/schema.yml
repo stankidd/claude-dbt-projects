@@ -1,0 +1,98 @@
+version: 2
+
+models:
+  - name: gold_revenue_by_segment
+    description: "Revenue and order metrics aggregated by customer market segment"
+    config:
+      materialized: table
+      tags: ['gold']
+    columns:
+      - name: market_segment
+        description: "Customer market segment"
+        tests:
+          - unique
+          - not_null
+      - name: total_orders
+        description: "Count of distinct orders in this segment"
+        tests:
+          - not_null
+      - name: total_revenue
+        description: "Sum of net_price (after discount and tax) across all line items"
+        tests:
+          - not_null
+      - name: avg_order_value
+        description: "total_revenue divided by total_orders"
+        tests:
+          - not_null
+      - name: total_items_sold
+        description: "Count of all line items in this segment"
+        tests:
+          - not_null
+      - name: return_rate
+        description: "Fraction of line items that were returned (is_returned = true)"
+        tests:
+          - not_null
+
+  - name: gold_revenue_by_supplier_nation
+    description: "Revenue and volume metrics aggregated by supplier nation"
+    config:
+      materialized: table
+      tags: ['gold']
+    columns:
+      - name: supplier_nation
+        description: "Nation the supplier belongs to"
+        tests:
+          - unique
+          - not_null
+      - name: total_revenue
+        description: "Sum of net_price across all line items from this supplier nation"
+        tests:
+          - not_null
+      - name: total_quantity
+        description: "Sum of quantity ordered from this supplier nation"
+        tests:
+          - not_null
+      - name: total_line_items
+        description: "Count of all line items from this supplier nation"
+        tests:
+          - not_null
+      - name: avg_discount
+        description: "Average discount rate applied to line items from this supplier nation"
+        tests:
+          - not_null
+      - name: late_shipment_rate
+        description: "Fraction of line items where ship_date > commit_date"
+        tests:
+          - not_null
+
+  - name: gold_revenue_by_part_type
+    description: "Revenue and volume metrics aggregated by part type"
+    config:
+      materialized: table
+      tags: ['gold']
+    columns:
+      - name: part_type
+        description: "Part type description"
+        tests:
+          - unique
+          - not_null
+      - name: total_revenue
+        description: "Sum of net_price across all line items of this part type"
+        tests:
+          - not_null
+      - name: total_quantity
+        description: "Sum of quantity ordered for this part type"
+        tests:
+          - not_null
+      - name: total_line_items
+        description: "Count of all line items for this part type"
+        tests:
+          - not_null
+      - name: avg_discount
+        description: "Average discount rate applied to line items of this part type"
+        tests:
+          - not_null
+      - name: return_rate
+        description: "Fraction of line items of this part type that were returned"
+        tests:
+          - not_null
