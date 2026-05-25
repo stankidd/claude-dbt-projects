@@ -1,0 +1,43 @@
+physician_id,physician_name,specialty,practice_name,city,state,territory_id,tier,years_in_practice
+P001,Dr. Margaret Sullivan,Oncology,Sullivan Cancer Associates,Chicago,IL,T001,Tier 1,22
+P002,Dr. Robert Chang,Oncology,Northwestern Cancer Center,Chicago,IL,T001,Tier 1,18
+P003,Dr. Patricia Moore,Primary Care,Lincoln Park Family Medicine,Chicago,IL,T001,Tier 2,12
+P004,Dr. James Patel,Oncology,South Side Oncology Group,Chicago,IL,T002,Tier 1,25
+P005,Dr. Linda Rodriguez,Cardiology,Chicago Heart Institute,Chicago,IL,T002,Tier 2,15
+P006,Dr. William Foster,Primary Care,Hyde Park Medical Group,Chicago,IL,T002,Tier 3,8
+P007,Dr. Susan Kim,Oncology,Detroit Medical Center Oncology,Detroit,MI,T003,Tier 1,20
+P008,Dr. Thomas Brown,Primary Care,Metro Detroit Family Health,Detroit,MI,T003,Tier 2,11
+P009,Dr. Karen Williams,Oncology,Cleveland Clinic Oncology,Cleveland,OH,T004,Tier 1,28
+P010,Dr. Charles Davis,Primary Care,University Hospitals Cleveland,Cleveland,OH,T004,Tier 2,9
+P011,Dr. Nancy Miller,Oncology,IU Health Oncology,Indianapolis,IN,T005,Tier 1,16
+P012,Dr. Donald Wilson,Primary Care,Franciscan Health Indianapolis,Indianapolis,IN,T005,Tier 3,6
+P013,Dr. Betty Anderson,Oncology,OSU Comprehensive Cancer Center,Columbus,OH,T006,Tier 1,24
+P014,Dr. Paul Thompson,Cardiology,OhioHealth Heart and Vascular,Columbus,OH,T006,Tier 2,14
+P015,Dr. Carol Jackson,Oncology,UC Health Cancer Center,Cincinnati,OH,T007,Tier 1,19
+P016,Dr. Mark White,Primary Care,TriHealth Primary Care,Cincinnati,OH,T007,Tier 3,7
+P017,Dr. Sandra Harris,Oncology,Memorial Sloan Kettering NY,New York,NY,T008,Tier 1,30
+P018,Dr. Steven Martin,Oncology,NYU Langone Oncology,New York,NY,T008,Tier 1,26
+P019,Dr. Dorothy Garcia,Cardiology,New York Presbyterian Cardiology,New York,NY,T009,Tier 2,17
+P020,Dr. Kenneth Martinez,Primary Care,Mount Sinai Primary Care,New York,NY,T009,Tier 3,5
+P021,Dr. Lisa Robinson,Oncology,Dana Farber Cancer Institute,Boston,MA,T010,Tier 1,23
+P022,Dr. George Clark,Primary Care,Mass General Primary Care,Boston,MA,T010,Tier 2,13
+P023,Dr. Ruth Lewis,Oncology,Jefferson University Oncology,Philadelphia,PA,T011,Tier 1,21
+P024,Dr. Joseph Walker,Cardiology,Penn Medicine Cardiology,Philadelphia,PA,T011,Tier 2,16
+P025,Dr. Sharon Hall,Oncology,Georgetown Lombardi Cancer Center,Washington,DC,T012,Tier 1,27
+P026,Dr. Edward Young,Primary Care,MedStar Primary Care,Washington,DC,T012,Tier 3,4
+P027,Dr. Maria Allen,Oncology,Cedars Sinai Oncology,Los Angeles,CA,T013,Tier 1,22
+P028,Dr. Larry Hernandez,Primary Care,UCLA Primary Care,Los Angeles,CA,T013,Tier 2,10
+P029,Dr. Sarah King,Oncology,USC Norris Cancer Center,Los Angeles,CA,T014,Tier 1,18
+P030,Dr. Frank Wright,Cardiology,Cedars Sinai Cardiology,Los Angeles,CA,T014,Tier 2,15
+P031,Dr. Deborah Lopez,Oncology,UCSF Helen Diller Cancer Center,San Francisco,CA,T015,Tier 1,29
+P032,Dr. Raymond Hill,Primary Care,UCSF Primary Care,San Francisco,CA,T015,Tier 2,11
+P033,Dr. Angela Scott,Oncology,Fred Hutch Cancer Center,Seattle,WA,T016,Tier 1,24
+P034,Dr. Gregory Green,Primary Care,UW Medicine Primary Care,Seattle,WA,T016,Tier 3,6
+P035,Dr. Melissa Adams,Oncology,Mayo Clinic Arizona Oncology,Phoenix,AZ,T017,Tier 1,20
+P036,Dr. Patrick Baker,Primary Care,Banner Health Primary Care,Phoenix,AZ,T017,Tier 2,9
+P037,Dr. Stephanie Nelson,Oncology,UCHealth Cancer Center,Denver,CO,T018,Tier 1,17
+P038,Dr. Raymond Carter,Cardiology,SCL Health Heart Institute,Denver,CO,T018,Tier 2,13
+P039,Dr. Carolyn Mitchell,Oncology,UT Southwestern Simmons Cancer,Dallas,TX,T019,Tier 1,25
+P040,Dr. Jerry Perez,Primary Care,Texas Health Primary Care,Dallas,TX,T019,Tier 3,5
+P041,Dr. Christine Roberts,Oncology,MD Anderson Cancer Center,Houston,TX,T020,Tier 1,31
+P042,Dr. Walter Turner,Primary Care,Houston Methodist Primary Care,Houston,TX,T020,Tier 2,8
