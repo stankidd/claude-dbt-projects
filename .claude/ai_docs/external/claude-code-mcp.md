@@ -1,4 +1,4 @@
-# Claude Code MCP (Model Context Protocol)
+ï»¿# Claude Code MCP (Model Context Protocol)
 
 ## Overview
 MCP connects Claude Code to external services, databases, and APIs.
@@ -8,7 +8,7 @@ It gives Claude Code "hands" to interact with systems beyond the local filesyste
 MCP servers expose tools that Claude Code can call during a session.
 Each tool call goes: Claude decides ? calls tool ? gets result ? continues reasoning.
 
-## Configuration — .mcp.json
+## Configuration â€” .mcp.json
 Place .mcp.json at your project root. It is auto-loaded by Claude Code.
 
 \\\json
@@ -60,8 +60,8 @@ claude mcp remove dbt
 \\\
 
 ## Transport Types
-- stdio (default): runs as local subprocess — best for dbt, local tools
-- http: connects to a remote server — best for SaaS integrations
+- stdio (default): runs as local subprocess â€” best for dbt, local tools
+- http: connects to a remote server â€” best for SaaS integrations
 - sse: legacy remote transport (prefer http for new setups)
 
 ## Security Note

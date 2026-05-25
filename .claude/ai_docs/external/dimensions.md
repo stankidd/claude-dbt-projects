@@ -1,8 +1,8 @@
-# DBT Semantic Models
+ï»¿# DBT Semantic Models
 
 ## Overview
 Semantic models are YAML-defined abstractions that sit on top of dbt models.
-They annotate your data with business meaning — declaring what each column
+They annotate your data with business meaning â€” declaring what each column
 represents (entity, dimension, or measure) so MetricFlow can generate
 consistent SQL automatically.
 
@@ -46,14 +46,14 @@ semantic_models:
 \\\
 
 ## Three Column Types
-- entities: join keys — how this model connects to others
+- entities: join keys â€” how this model connects to others
 - dimensions: ways to slice and filter (categorical, time, boolean)
 - measures: numerical aggregations (sum, count, average, etc.)
 
 ## Relationship to dbt Models
 One semantic model maps to exactly one dbt model (1:1 relationship).
 Multiple semantic models can exist for the same dbt model if needed.
-The semantic model does not change the underlying table — it annotates it.
+The semantic model does not change the underlying table â€” it annotates it.
 
 ## Recommended Placement
 Define semantic models in the same YAML file as your model's schema definition:
@@ -184,7 +184,7 @@ Dylan's agents validate automatically:
 
 ## Overview
 Dimensions are the columns you use to slice, filter, and group metrics.
-They answer the "by what?" question — revenue by region, deals by stage,
+They answer the "by what?" question â€” revenue by region, deals by stage,
 headcount by role. Dimensions are defined in semantic models.
 
 ## Dimension Types

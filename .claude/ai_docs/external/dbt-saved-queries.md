@@ -1,4 +1,4 @@
-# DBT Saved Queries
+﻿# DBT Saved Queries
 
 ## Overview
 Saved queries bundle metrics, dimensions, and filters that are logically related
@@ -31,7 +31,7 @@ saved_queries:
 - metrics: list of metric names to include
 - group_by: dimensions to slice by (use Dimension() and TimeDimension() syntax)
 - where: filter conditions
-- exports: optional � write results to a table on a schedule
+- exports: optional — write results to a table on a schedule
 
 ## Exports
 Exports take saved queries further by scheduling them to write to your warehouse:

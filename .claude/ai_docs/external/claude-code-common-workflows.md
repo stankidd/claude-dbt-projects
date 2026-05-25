@@ -1,4 +1,4 @@
-# Claude Code Common Workflows
+﻿# Claude Code Common Workflows
 
 ## Overview
 Common patterns and workflows used in Claude Code agentic development.
@@ -34,7 +34,7 @@ items as it goes. This allows partial recovery if a session is interrupted.
 ## Context Window Management
 - Start a new Claude Code instance for each major task
 - Use subagents to isolate exploratory work
-- Keep CLAUDE.md concise � it loads on every session
+- Keep CLAUDE.md concise — it loads on every session
 
 ## Working with Large Codebases
 Use /compact to summarize prior context before continuing long sessions.
