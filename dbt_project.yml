@@ -17,29 +17,51 @@ clean-targets:
 
 models:
   mammoth_test:
-    bronze:
-      +enabled: false
-    silver:
-      +enabled: false
-    gold:
-      +enabled: false
     tpch_sf1000:
       bronze:
         +materialized: view
         +tags: ['bronze', 'tpch_sf1000']
+        +schema: tpch_sf1000_bronze
       silver:
         +materialized: table
         +tags: ['silver', 'tpch_sf1000']
+        +schema: tpch_sf1000_silver
       gold:
         +materialized: table
         +tags: ['gold', 'tpch_sf1000']
+        +schema: tpch_sf1000_gold
     tpch_sf10:
       bronze:
         +materialized: view
         +tags: ['bronze', 'tpch_sf10']
+        +schema: tpch_sf10_bronze
       silver:
         +materialized: table
         +tags: ['silver', 'tpch_sf10']
+        +schema: tpch_sf10_silver
       gold:
         +materialized: table
         +tags: ['gold', 'tpch_sf10']
+        +schema: tpch_sf10_gold
+    pharma_sales:
+      bronze:
+        +materialized: view
+        +tags: ['bronze', 'pharma_sales']
+        +schema: pharma_sales_bronze
+      silver:
+        +materialized: table
+        +tags: ['silver', 'pharma_sales']
+        +schema: pharma_sales_silver
+      gold:
+        +materialized: table
+        +tags: ['gold', 'pharma_sales']
+        +schema: pharma_sales_gold
+
+seeds:
+  mammoth_test:
+    pharma_sales:
+      +schema: pharma_sales_seeds
+      +quote_columns: false
+
+dbt-cloud:
+  project-id: "70403103999640"

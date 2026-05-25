@@ -1,0 +1,169 @@
+version: 2
+
+models:
+  - name: bronze_territories
+    description: "Raw territory and sales rep master data — one row per territory"
+    columns:
+      - name: territory_id
+        description: "Primary key — unique territory identifier"
+        tests:
+          - unique
+          - not_null
+      - name: territory_name
+        description: "Human-readable territory name"
+      - name: region
+        description: "Geographic region"
+        tests:
+          - accepted_values:
+              values: ['Midwest', 'Northeast', 'West', 'South']
+      - name: district
+        description: "Sales district within the region"
+      - name: rep_id
+        description: "Sales rep identifier"
+        tests:
+          - not_null
+      - name: rep_name
+        description: "Sales rep full name"
+      - name: rep_hire_date
+        description: "Date rep was hired"
+
+  - name: bronze_physicians
+    description: "Raw physician master data — one row per physician"
+    columns:
+      - name: physician_id
+        description: "Primary key — unique physician identifier"
+        tests:
+          - unique
+          - not_null
+      - name: physician_name
+        description: "Physician full name"
+      - name: specialty
+        description: "Medical specialty"
+        tests:
+          - accepted_values:
+              values: ['Oncology', 'Primary Care', 'Cardiology']
+      - name: practice_name
+        description: "Name of the physician's practice"
+      - name: city
+        description: "City where the practice is located"
+      - name: state
+        description: "State where the practice is located"
+      - name: territory_id
+        description: "Territory this physician belongs to"
+        tests:
+          - not_null
+      - name: tier
+        description: "Physician prescribing potential tier"
+        tests:
+          - accepted_values:
+              values: ['Tier 1', 'Tier 2', 'Tier 3']
+      - name: years_in_practice
+        description: "Number of years the physician has been in practice"
+
+  - name: bronze_products
+    description: "Raw product catalog — one row per product"
+    columns:
+      - name: product_id
+        description: "Primary key — unique product identifier"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Brand name of the drug"
+      - name: generic_name
+        description: "Generic chemical name"
+      - name: therapeutic_area
+        description: "Disease area or therapeutic category"
+      - name: drug_class
+        description: "Pharmacological drug class"
+      - name: formulation
+        description: "Drug formulation type (e.g. IV, Oral, Subcutaneous)"
+      - name: dosage_strength
+        description: "Dosage strength and units"
+      - name: list_price_usd
+        description: "List price per unit in USD"
+      - name: launch_date
+        description: "Date the product was commercially launched"
+      - name: is_specialty
+        description: "True if this is a specialty drug requiring special handling"
+        tests:
+          - not_null
+
+  - name: bronze_sales_calls
+    description: "Raw sales rep call activity — one row per sales call"
+    columns:
+      - name: call_id
+        description: "Primary key — unique call identifier"
+        tests:
+          - unique
+          - not_null
+      - name: call_date
+        description: "Date of the sales call"
+      - name: rep_id
+        description: "Sales rep who made the call"
+        tests:
+          - not_null
+      - name: territory_id
+        description: "Territory where the call occurred"
+        tests:
+          - not_null
+      - name: physician_id
+        description: "Physician who was called on"
+        tests:
+          - not_null
+      - name: product_id
+        description: "Product that was detailed during the call"
+        tests:
+          - not_null
+      - name: call_type
+        description: "Type of call made"
+        tests:
+          - accepted_values:
+              values: ['Detail', 'Follow-up']
+      - name: call_outcome
+        description: "Outcome of the sales call"
+        tests:
+          - accepted_values:
+              values: ['Positive', 'Neutral', 'Negative']
+      - name: samples_left
+        description: "Number of product samples left with the physician"
+      - name: discussion_minutes
+        description: "Duration of the product discussion in minutes"
+      - name: follow_up_required
+        description: "True if a follow-up call was requested or scheduled"
+
+  - name: bronze_prescriptions
+    description: "Raw prescription outcome data — one row per prescription written"
+    columns:
+      - name: rx_id
+        description: "Primary key — unique prescription identifier"
+        tests:
+          - unique
+          - not_null
+      - name: rx_date
+        description: "Date the prescription was written"
+      - name: physician_id
+        description: "Physician who wrote the prescription"
+        tests:
+          - not_null
+      - name: product_id
+        description: "Product that was prescribed"
+        tests:
+          - not_null
+      - name: territory_id
+        description: "Territory associated with this prescription"
+        tests:
+          - not_null
+      - name: quantity_units
+        description: "Number of units prescribed"
+      - name: total_revenue_usd
+        description: "Total revenue generated by this prescription in USD"
+        tests:
+          - not_null
+      - name: new_patient
+        description: "True if this prescription is for a new patient"
+      - name: prescription_type
+        description: "Whether this is a new or refill prescription"
+        tests:
+          - accepted_values:
+              values: ['New', 'Refill']

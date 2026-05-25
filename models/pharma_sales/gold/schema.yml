@@ -1,0 +1,164 @@
+version: 2
+
+models:
+  - name: gold_rep_performance
+    description: "Sales rep performance scorecard — one row per rep, aggregated from all calls and prescriptions in their territory"
+    columns:
+      - name: rep_id
+        description: "Primary key — unique sales rep identifier"
+        tests:
+          - unique
+          - not_null
+      - name: rep_name
+        description: "Sales rep full name"
+      - name: territory_id
+        description: "Territory the rep is assigned to"
+      - name: territory_name
+        description: "Territory name"
+      - name: region
+        description: "Geographic region"
+      - name: district
+        description: "Sales district"
+      - name: total_calls
+        description: "Total number of sales calls made by the rep"
+        tests:
+          - not_null
+      - name: total_prescriptions
+        description: "Total prescriptions written in the rep's territory"
+      - name: total_revenue
+        description: "Total revenue in USD from prescriptions in the rep's territory"
+        tests:
+          - not_null
+      - name: new_patient_revenue
+        description: "Revenue from new patient prescriptions"
+      - name: refill_revenue
+        description: "Revenue from refill prescriptions"
+      - name: positive_calls
+        description: "Number of calls with a Positive outcome"
+      - name: distinct_physicians_called
+        description: "Number of unique physicians called by the rep"
+      - name: avg_discussion_minutes
+        description: "Average discussion duration in minutes per call"
+        tests:
+          - not_null
+      - name: conversion_rate
+        description: "Total prescriptions divided by total calls (BRD: Conversion Rate)"
+      - name: revenue_per_call
+        description: "Total revenue divided by total calls (BRD: Revenue Per Call)"
+      - name: positive_call_rate
+        description: "Positive calls divided by total calls (BRD: Positive Call Rate)"
+      - name: calls_per_physician
+        description: "Total calls divided by distinct physicians called (BRD: Calls Per Physician)"
+
+  - name: gold_physician_scorecard
+    description: "Physician value scorecard — one row per physician, for targeting and tier adjustment decisions"
+    columns:
+      - name: physician_id
+        description: "Primary key — unique physician identifier"
+        tests:
+          - unique
+          - not_null
+      - name: physician_name
+        description: "Physician full name"
+      - name: specialty
+        description: "Medical specialty"
+      - name: tier
+        description: "Physician prescribing potential tier"
+      - name: territory_id
+        description: "Territory this physician belongs to"
+      - name: territory_name
+        description: "Territory name"
+      - name: total_calls
+        description: "Total number of calls made to this physician"
+      - name: total_prescriptions
+        description: "Total prescriptions written by this physician"
+      - name: total_revenue
+        description: "Total revenue from this physician's prescriptions in USD"
+        tests:
+          - not_null
+      - name: new_patient_revenue
+        description: "Revenue from new patient prescriptions written by this physician"
+      - name: refill_revenue
+        description: "Revenue from refill prescriptions written by this physician"
+      - name: avg_discussion_minutes
+        description: "Average discussion duration per call with this physician"
+      - name: positive_call_rate
+        description: "Proportion of calls to this physician with a Positive outcome"
+      - name: conversion_rate
+        description: "Total prescriptions divided by total calls for this physician"
+
+  - name: gold_product_performance
+    description: "Product performance summary — one row per product including products with no calls or prescriptions"
+    columns:
+      - name: product_id
+        description: "Primary key — unique product identifier"
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: "Product brand name"
+        tests:
+          - not_null
+      - name: therapeutic_area
+        description: "Disease area or therapeutic category"
+      - name: drug_class
+        description: "Pharmacological drug class"
+      - name: is_specialty_product
+        description: "True if this is a specialty drug"
+      - name: launch_date
+        description: "Commercial launch date"
+      - name: total_calls
+        description: "Total number of sales calls detailing this product (0 if none)"
+      - name: total_prescriptions
+        description: "Total prescriptions written for this product (0 if none)"
+      - name: total_revenue
+        description: "Total revenue from prescriptions for this product in USD (0 if none)"
+      - name: new_patient_revenue
+        description: "Revenue from new patient prescriptions for this product"
+      - name: refill_revenue
+        description: "Revenue from refill prescriptions for this product"
+      - name: conversion_rate
+        description: "Total prescriptions divided by total calls for this product (NULL if no calls)"
+
+  - name: gold_territory_summary
+    description: "Territory performance summary — one row per territory, for territory realignment and rep coaching decisions"
+    columns:
+      - name: territory_id
+        description: "Primary key — unique territory identifier"
+        tests:
+          - unique
+          - not_null
+      - name: territory_name
+        description: "Territory name"
+      - name: region
+        description: "Geographic region"
+      - name: district
+        description: "Sales district"
+      - name: rep_id
+        description: "Sales rep assigned to this territory"
+      - name: rep_name
+        description: "Sales rep full name"
+      - name: total_calls
+        description: "Total calls made in this territory"
+        tests:
+          - not_null
+      - name: total_prescriptions
+        description: "Total prescriptions written in this territory"
+      - name: total_revenue
+        description: "Total revenue from prescriptions in this territory in USD"
+      - name: new_patient_revenue
+        description: "Revenue from new patient prescriptions in this territory"
+      - name: refill_revenue
+        description: "Revenue from refill prescriptions in this territory"
+      - name: distinct_physicians_called
+        description: "Number of unique physicians called in this territory"
+      - name: avg_discussion_minutes
+        description: "Average discussion duration per call in this territory"
+      - name: positive_call_rate
+        description: "Proportion of calls with a Positive outcome in this territory"
+      - name: conversion_rate
+        description: "Total prescriptions divided by total calls in this territory"
+      - name: revenue_per_call
+        description: "Total revenue divided by total calls in this territory"
+      - name: calls_per_physician
+        description: "Total calls divided by distinct physicians called in this territory"
