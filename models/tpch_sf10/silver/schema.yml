@@ -77,3 +77,63 @@ models:
         description: "Actual ship date"
       - name: ship_mode
         description: "Shipping mode"
+
+  - name: sf10_silver_supplier_performance
+    description: "SF10 line items enriched with supplier, nation, and part data; includes derived performance metrics"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - order_id
+              - line_number
+    columns:
+      - name: order_id
+        description: "Foreign key to orders"
+        tests:
+          - not_null
+      - name: line_number
+        description: "Line item number within order"
+        tests:
+          - not_null
+      - name: supplier_id
+        description: "Foreign key to supplier"
+        tests:
+          - not_null
+      - name: supplier_name
+        description: "Supplier name"
+      - name: nation_name
+        description: "Nation of the supplier"
+        tests:
+          - not_null
+      - name: part_id
+        description: "Foreign key to part"
+      - name: part_type
+        description: "Part type category"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Quantity ordered"
+      - name: extended_price
+        description: "Line item extended price before discount"
+      - name: discount
+        description: "Discount fraction applied"
+      - name: tax
+        description: "Tax fraction applied"
+      - name: net_price
+        description: "Final price after discount and tax: extended_price * (1 - discount) * (1 + tax)"
+        tests:
+          - not_null
+      - name: is_returned
+        description: "True if return_flag = R"
+        tests:
+          - not_null
+      - name: is_late_shipment
+        description: "True if ship_date exceeded commit_date"
+        tests:
+          - not_null
+      - name: days_late
+        description: "Days between commit_date and ship_date for late shipments; NULL for on-time"
+      - name: ship_date
+        description: "Actual ship date"
+      - name: commit_date
+        description: "Committed delivery date"

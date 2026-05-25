@@ -85,3 +85,139 @@ models:
         description: "Fraction of line items returned"
         tests:
           - not_null
+
+  - name: sf10_gold_supplier_scorecard
+    description: "SF10 full performance scorecard per supplier for contract negotiation and remediation"
+    columns:
+      - name: supplier_id
+        description: "Unique supplier identifier"
+        tests:
+          - unique
+          - not_null
+      - name: supplier_name
+        description: "Supplier name"
+      - name: nation_name
+        description: "Nation of the supplier"
+      - name: total_revenue
+        description: "Sum of net_price across all line items fulfilled by this supplier"
+        tests:
+          - not_null
+      - name: total_line_items
+        description: "Count of line items fulfilled by this supplier"
+        tests:
+          - not_null
+      - name: total_quantity
+        description: "Sum of quantity across all line items"
+        tests:
+          - not_null
+      - name: avg_discount_rate
+        description: "Average discount fraction applied across all line items"
+        tests:
+          - not_null
+      - name: late_shipment_count
+        description: "Count of line items where ship_date exceeded commit_date"
+        tests:
+          - not_null
+      - name: late_shipment_rate
+        description: "Fraction of line items that were late"
+        tests:
+          - not_null
+      - name: avg_days_late
+        description: "Average days late for late shipments only; NULL for suppliers with zero late shipments"
+      - name: return_count
+        description: "Count of line items where return_flag = R"
+        tests:
+          - not_null
+      - name: return_rate
+        description: "Fraction of line items that were returned"
+        tests:
+          - not_null
+
+  - name: sf10_gold_nation_performance
+    description: "SF10 supply chain performance summary by supplier nation for regional sourcing strategy"
+    columns:
+      - name: nation_name
+        description: "Supplier nation name"
+        tests:
+          - unique
+          - not_null
+      - name: supplier_count
+        description: "Count of distinct suppliers in this nation"
+        tests:
+          - not_null
+      - name: total_revenue
+        description: "Sum of net_price across all line items from suppliers in this nation"
+        tests:
+          - not_null
+      - name: total_line_items
+        description: "Count of line items fulfilled by suppliers in this nation"
+        tests:
+          - not_null
+      - name: total_quantity
+        description: "Sum of quantity across all line items"
+        tests:
+          - not_null
+      - name: avg_discount_rate
+        description: "Average discount fraction applied"
+        tests:
+          - not_null
+      - name: late_shipment_count
+        description: "Count of late shipments from suppliers in this nation"
+        tests:
+          - not_null
+      - name: late_shipment_rate
+        description: "Fraction of line items that were late"
+        tests:
+          - not_null
+      - name: avg_days_late
+        description: "Average days late for late shipments only"
+      - name: return_rate
+        description: "Fraction of line items that were returned"
+        tests:
+          - not_null
+
+  - name: sf10_gold_supplier_part_performance
+    description: "SF10 supplier performance by part type for category manager analysis"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - supplier_id
+              - part_type
+    columns:
+      - name: supplier_id
+        description: "Supplier identifier"
+        tests:
+          - not_null
+      - name: supplier_name
+        description: "Supplier name"
+      - name: nation_name
+        description: "Nation of the supplier"
+      - name: part_type
+        description: "Part type category"
+        tests:
+          - not_null
+      - name: total_revenue
+        description: "Sum of net_price for this supplier and part type"
+        tests:
+          - not_null
+      - name: total_line_items
+        description: "Count of line items for this supplier and part type"
+        tests:
+          - not_null
+      - name: total_quantity
+        description: "Sum of quantity for this supplier and part type"
+        tests:
+          - not_null
+      - name: avg_discount_rate
+        description: "Average discount fraction for this supplier and part type"
+        tests:
+          - not_null
+      - name: late_shipment_rate
+        description: "Fraction of line items that were late"
+        tests:
+          - not_null
+      - name: return_rate
+        description: "Fraction of line items that were returned"
+        tests:
+          - not_null
