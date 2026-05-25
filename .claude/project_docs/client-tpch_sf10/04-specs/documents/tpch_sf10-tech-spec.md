@@ -1,5 +1,5 @@
-@"
-# TPCH Order Analytics — Technical Specification
+﻿@"
+# TPCH Order Analytics â€” Technical Specification
 
 ## Business Context
 Build an order analytics pipeline using the Snowflake TPCH sample dataset

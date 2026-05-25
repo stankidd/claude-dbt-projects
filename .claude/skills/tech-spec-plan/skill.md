@@ -1,4 +1,4 @@
-# tech-spec-plan
+ï»¿# tech-spec-plan
 
 ## Purpose
 Convert a Business Requirements Document (BRD) or Business Use Case into a
@@ -24,7 +24,7 @@ Before writing a single line of the tech spec:
 If source data is not accessible, STOP and report the blocker.
 Do not design models based on assumed column names.
 
-## Step 1 — Parse the BRD
+## Step 1 â€” Parse the BRD
 
 Read the input document and extract:
 
@@ -56,7 +56,7 @@ For each output model:
 - What is the natural key?
 - Is this a snapshot or a current-state view?
 
-## Step 2 — Profile Source Data
+## Step 2 â€” Profile Source Data
 
 For each source table, use dbt_show to run:
 
@@ -96,7 +96,7 @@ FROM source_table
 Document ALL findings. Discrepancies between BRD assumptions and actual
 data must be resolved before the tech spec is written.
 
-## Step 3 — Design Bronze Layer
+## Step 3 â€” Design Bronze Layer
 
 For each source table produce:
 
@@ -115,7 +115,7 @@ For each source table produce:
 ### Bronze Rules (enforce for every bronze model)
 - Rename all columns to snake_case
 - Remove source system prefixes (e.g. O_ from Oracle, C_ from Salesforce)
-- Cast data types explicitly — never leave ambiguous types
+- Cast data types explicitly â€” never leave ambiguous types
 - Do NOT filter any rows
 - Do NOT apply any business logic
 - Do NOT join to any other table
@@ -126,7 +126,7 @@ For each source table produce:
 - Status/category columns: accepted_values (use profiled values)
 - Foreign keys: not_null
 
-## Step 4 — Design Intermediate Models (if needed)
+## Step 4 â€” Design Intermediate Models (if needed)
 
 Intermediate models solve cross-cutting concerns before silver joins:
 
@@ -156,7 +156,7 @@ WITH source AS (
 SELECT * FROM mapped
 `
 
-## Step 5 — Design Silver Layer
+## Step 5 â€” Design Silver Layer
 
 For each silver model produce:
 
@@ -198,16 +198,16 @@ For every calculated column:
 - Categorical columns: accepted_values (post-standardization values only)
 - Foreign key relationships: relationships test where applicable
 
-## Step 6 — Design Gold Layer
+## Step 6 â€” Design Gold Layer
 
 For each gold model produce:
 
 ### Model Definition
 - Model name: gold_[use_case_name]
-- Depends on: [list of ref() models — silver only, never bronze]
+- Depends on: [list of ref() models â€” silver only, never bronze]
 - Materialization: table
 - Grain: [what one row represents]
-- Purpose: [business description — what decision does this inform?]
+- Purpose: [business description â€” what decision does this inform?]
 
 ### Aggregations
 For every metric column:
@@ -228,7 +228,7 @@ For every metric column:
 - All metric columns: not_null
 - Metrics that cannot be negative: dbt_utils.expression_is_true (>= 0)
 
-## Step 7 — Write the Tech Spec Document
+## Step 7 â€” Write the Tech Spec Document
 
 Save the completed tech spec to:
 .claude/project_docs/[client-folder]/04-specs/[use-case]-tech-spec.md
@@ -256,7 +256,7 @@ Always include this at the end of every tech spec:
 - [ ] All field names lowercase_with_underscores
 - [ ] PR created with full summary and checklist complete
 
-## Step 8 — Validate Before Handing Off
+## Step 8 â€” Validate Before Handing Off
 
 Before declaring the tech spec complete, check:
 
@@ -267,10 +267,10 @@ Before declaring the tech spec complete, check:
 - [ ] Every business rule has a corresponding transformation
 - [ ] Every model has at least a unique + not_null test on its primary key
 - [ ] The grain is defined for every model
-- [ ] No assumed column names — all verified against actual source data
+- [ ] No assumed column names â€” all verified against actual source data
 - [ ] Edge cases from the BRD are handled explicitly in silver
 
-### Red Flags — Stop and Clarify Before Proceeding
+### Red Flags â€” Stop and Clarify Before Proceeding
 - Source table does not exist or is empty
 - Column name in BRD does not match actual source column
 - Grain is ambiguous (stakeholder disagreement on what one row means)

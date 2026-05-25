@@ -1,4 +1,4 @@
-# dbt Best Practices
+ï»¿# dbt Best Practices
 
 ## Purpose
 Core coding standards for all dbt models in this project.
@@ -8,7 +8,7 @@ Load this skill before building any bronze, silver, or gold models.
 - ALL SQL keywords UPPERCASE (SELECT, FROM, WHERE, JOIN, GROUP BY, etc.)
 - All field names lowercase_with_underscores
 - Always alias tables with short meaningful names (o for orders, l for lineitem)
-- CTEs preferred over subqueries — always use CTEs
+- CTEs preferred over subqueries â€” always use CTEs
 - One column per line in SELECT statements
 - Commas at the start of each line, not the end
 - Always include a blank line between CTEs
@@ -33,7 +33,7 @@ SELECT * FROM renamed
 \\\
 
 ## Bronze Layer Rules
-- Source data only — no business logic whatsoever
+- Source data only â€” no business logic whatsoever
 - Rename columns to snake_case removing source system prefixes
 - Cast data types explicitly (dates, timestamps, numerics)
 - Materialize as views (no storage cost, always fresh)
@@ -43,7 +43,7 @@ SELECT * FROM renamed
 - No filtering in bronze models (keep all rows)
 
 ## Silver Layer Rules
-- Reference bronze models using ref() only — never source()
+- Reference bronze models using ref() only â€” never source()
 - Apply business logic, cleaning, and conforming here
 - Join related bronze models here
 - Filter out invalid or irrelevant records here
@@ -54,7 +54,7 @@ SELECT * FROM renamed
 ## Gold Layer Rules
 - Reference silver models using ref() only
 - Final business-facing aggregations and metrics
-- No raw column names — only business-meaningful names
+- No raw column names â€” only business-meaningful names
 - Materialize as tables
 - Name pattern: gold_[use_case] (e.g. gold_order_summary)
 - These are what dashboards and AI agents query

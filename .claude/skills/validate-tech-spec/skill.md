@@ -1,9 +1,9 @@
-# validate-tech-spec
+ï»¿# validate-tech-spec
 
 ## Purpose
 Validate that a technical specification is complete, unambiguous, and
 build-ready before any dbt models are written. This skill is a quality
-gate — it prevents wasted build time on incomplete or incorrect specs.
+gate â€” it prevents wasted build time on incomplete or incorrect specs.
 A spec that fails validation must be fixed before /build-bronze-models
 is run.
 
@@ -271,7 +271,7 @@ DATA QUALITY FINDINGS
 PASSED CHECKS
 --------------
 [Count of checks passed] of [total checks] passed.
-[List notable passes — e.g. all source tables confirmed accessible]
+[List notable passes â€” e.g. all source tables confirmed accessible]
 
 VERDICT
 --------

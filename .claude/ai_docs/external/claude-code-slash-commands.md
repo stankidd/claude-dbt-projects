@@ -1,11 +1,11 @@
-# Claude Agent SDK — Python
+ï»¿# Claude Agent SDK â€” Python
 
 ## Overview
 The Claude Agent SDK (claude-agent-sdk) is Anthropic's official Python package
 for building autonomous AI agents programmatically. It wraps the Claude Code CLI
 binary, giving Python code access to the same agentic engine used in the terminal.
 
-## Two Different Packages — Know the Difference
+## Two Different Packages â€” Know the Difference
 
 | Package | Purpose | Use When |
 |---------|---------|----------|
@@ -71,7 +71,7 @@ Settings are applied in this order (later overrides earlier):
 3. .claude/settings.local.json      (project, local only, gitignored)
 4. ~/.claude/settings.local.json    (global local overrides)
 
-## Key Settings — .claude/settings.json
+## Key Settings â€” .claude/settings.json
 
 \\\json
 {
@@ -170,7 +170,7 @@ Invoked as: /build-bronze-models tech-spec.md
 
 ## Custom Skills (Recommended over commands)
 Stored in .claude/skills/skill-name/SKILL.md
-More powerful than commands — support frontmatter, auto-invocation, subagents.
+More powerful than commands â€” support frontmatter, auto-invocation, subagents.
 
 ## Passing Arguments
 Use \ in your command/skill file to accept input:

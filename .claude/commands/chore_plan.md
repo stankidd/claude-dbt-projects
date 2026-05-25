@@ -1,4 +1,4 @@
----
+﻿---
 description: Plan and execute routine maintenance tasks on the dbt project
 allowed-tools: Read(*), Bash(dbt*), Bash(git*), mcp__dbt__dbt_build, mcp__dbt__dbt_ls
 ---
@@ -12,11 +12,11 @@ Use this command to keep the codebase clean and up to date.
 /chore-plan $ARGUMENTS
 
 Where $ARGUMENTS optionally specifies a focus area:
-- "docs" — find undocumented models
-- "tests" — find models missing tests
-- "deps" — check for outdated packages
-- "style" — run SQLFluff linting
-- (empty) — run all checks
+- "docs" â€” find undocumented models
+- "tests" â€” find models missing tests
+- "deps" â€” check for outdated packages
+- "style" â€” run SQLFluff linting
+- (empty) â€” run all checks
 
 ## Steps
 

@@ -1,4 +1,4 @@
-# Supplier Performance Analysis � Business Requirements Document
+﻿# Supplier Performance Analysis — Business Requirements Document
 
 **Client:** TPCH Analytics
 **Version:** 1.0

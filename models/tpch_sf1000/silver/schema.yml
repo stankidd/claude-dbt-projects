@@ -1,4 +1,4 @@
-version: 2
+﻿version: 2
 
 models:
   - name: silver_orders
@@ -72,7 +72,7 @@ models:
         tests:
           - not_null
       - name: net_price
-        description: "discounted_price * (1 + tax) — final price including tax"
+        description: "discounted_price * (1 + tax) â€” final price including tax"
         tests:
           - not_null
       - name: is_returned

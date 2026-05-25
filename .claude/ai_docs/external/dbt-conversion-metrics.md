@@ -1,4 +1,4 @@
-# Claude Code Sub-Agents
+ï»¿# Claude Code Sub-Agents
 
 ## Overview
 Sub-agents are isolated Claude Code instances that run in separate context windows.
@@ -13,15 +13,15 @@ Sub-agents isolate expensive exploration from the main conversation.
 ## How Sub-Agents Work
 \\\
 Main Agent
-    ¦
+    Â¦
     +-- "Explore the source schema" --? Sub-Agent A (clean context)
-    ¦                                       Reads 50 tables
-    ¦                                       Returns: summary of relevant tables
-    ¦
+    Â¦                                       Reads 50 tables
+    Â¦                                       Returns: summary of relevant tables
+    Â¦
     +-- "Profile the deals table" ---? Sub-Agent B (clean context)
-    ¦                                       Runs 10 queries
-    ¦                                       Returns: schema + sample data
-    ¦
+    Â¦                                       Runs 10 queries
+    Â¦                                       Returns: schema + sample data
+    Â¦
     +-- Uses summaries to build models (main context stays clean)
 \\\
 
@@ -60,10 +60,10 @@ before building any models.
 ## DBT Agentic Pattern with Sub-Agents
 \\\
 Orchestrator (Sonnet)
-    ¦
+    Â¦
     +-- schema-explorer subagent (Haiku) ? understands raw data
     +-- spec-validator subagent (Haiku) ? confirms tech spec is complete
-    ¦
+    Â¦
     +-- Builds bronze/silver/gold models with full context
 \\\
 "@ | Set-Content "C:\Users\Stan\Documents\VScode\mammoth-dbt-ops-reporting\.claude\ai_docs\external\claude-code-sub-agents.md"

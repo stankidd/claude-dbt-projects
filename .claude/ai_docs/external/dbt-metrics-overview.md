@@ -1,4 +1,4 @@
-# DBT Fill Nulls Advanced
+ï»¿# DBT Fill Nulls Advanced
 
 ## Overview
 fill_nulls_with and join_to_timespine work together to ensure every date
@@ -67,7 +67,7 @@ models:
 
 ## Overview
 MetricFlow constructs joins automatically based on entity definitions.
-You never write explicit JOIN SQL in the semantic layer — you define relationships
+You never write explicit JOIN SQL in the semantic layer â€” you define relationships
 via entities and MetricFlow figures out the correct join path and type.
 
 ## Join Types MetricFlow Uses
@@ -211,6 +211,6 @@ When the dbt MCP server is connected, Claude can:
 - Combine metrics with dimensions to answer business questions
 - Generate consistent answers regardless of which AI tool is used
 
-This is how Dylan queried the hiring gap analysis in Claude Desktop —
+This is how Dylan queried the hiring gap analysis in Claude Desktop â€”
 Claude used the MCP server to find and query the gold metrics,
 not by guessing table names.
