@@ -15,7 +15,8 @@ models:
         description: "Geographic region"
         tests:
           - accepted_values:
-              values: ['Midwest', 'Northeast', 'West', 'South']
+              arguments:
+                values: ['Midwest', 'Northeast', 'West', 'South']
       - name: district
         description: "Sales district within the region"
       - name: rep_id
@@ -41,7 +42,8 @@ models:
         description: "Medical specialty"
         tests:
           - accepted_values:
-              values: ['Oncology', 'Primary Care', 'Cardiology']
+              arguments:
+                values: ['Oncology', 'Primary Care', 'Cardiology']
       - name: practice_name
         description: "Name of the physician's practice"
       - name: city
@@ -56,7 +58,8 @@ models:
         description: "Physician prescribing potential tier"
         tests:
           - accepted_values:
-              values: ['Tier 1', 'Tier 2', 'Tier 3']
+              arguments:
+                values: ['Tier 1', 'Tier 2', 'Tier 3']
       - name: years_in_practice
         description: "Number of years the physician has been in practice"
 
@@ -119,12 +122,14 @@ models:
         description: "Type of call made"
         tests:
           - accepted_values:
-              values: ['Detail', 'Follow-up']
+              arguments:
+                values: ['Detail', 'Follow-up']
       - name: call_outcome
         description: "Outcome of the sales call"
         tests:
           - accepted_values:
-              values: ['Positive', 'Neutral', 'Negative']
+              arguments:
+                values: ['Positive', 'Neutral', 'Negative']
       - name: samples_left
         description: "Number of product samples left with the physician"
       - name: discussion_minutes
@@ -166,4 +171,5 @@ models:
         description: "Whether this is a new or refill prescription"
         tests:
           - accepted_values:
-              values: ['New', 'Refill']
+              arguments:
+                values: ['New', 'Refill']

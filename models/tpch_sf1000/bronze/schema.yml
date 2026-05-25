@@ -20,7 +20,8 @@ models:
         description: "Order status code"
         tests:
           - accepted_values:
-              values: ['O', 'F', 'P']
+              arguments:
+                values: ['O', 'F', 'P']
       - name: total_price
         description: "Total order price"
       - name: order_date
@@ -67,12 +68,14 @@ models:
         description: "Return flag code"
         tests:
           - accepted_values:
-              values: ['R', 'A', 'N']
+              arguments:
+                values: ['R', 'A', 'N']
       - name: line_status
         description: "Line item status code"
         tests:
           - accepted_values:
-              values: ['O', 'F']
+              arguments:
+                values: ['O', 'F']
       - name: ship_date
         description: "Date the item was shipped"
       - name: commit_date
@@ -111,7 +114,8 @@ models:
         description: "Market segment the customer belongs to"
         tests:
           - accepted_values:
-              values: ['AUTOMOBILE', 'BUILDING', 'FURNITURE', 'MACHINERY', 'HOUSEHOLD']
+              arguments:
+                values: ['AUTOMOBILE', 'BUILDING', 'FURNITURE', 'MACHINERY', 'HOUSEHOLD']
       - name: customer_comment
         description: "Free-text comment on the customer"
 
