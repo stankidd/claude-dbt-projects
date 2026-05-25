@@ -33,15 +33,55 @@ The dbt MCP server is connected with 47 tools including:
 - Always use ref() to reference other dbt models
 
 ## Source Data
-For this project we are using Snowflake sample data:
+
+### TPCH_SF1000 — Order Analytics
 Database: SNOWFLAKE_SAMPLE_DATA
 Schema: TPCH_SF1000
 Tables: ORDERS, LINEITEM, CUSTOMER, SUPPLIER, PART, PARTSUPP, NATION, REGION
+Scale: 6 billion rows in LINEITEM (production scale)
+Use case: Order analytics — revenue by segment, supplier nation, part type
+Models: models/tpch_sf1000/bronze|silver|gold
+Project docs: .claude/project_docs/client-tpch_sf1000/
+
+### TPCH_SF10 — Supplier Performance
+Database: SNOWFLAKE_SAMPLE_DATA
+Schema: TPCH_SF10
+Tables: ORDERS, LINEITEM, CUSTOMER, SUPPLIER, PART, PARTSUPP, NATION, REGION
+Scale: 60 million rows in LINEITEM (fast iteration)
+Use case: Supplier performance — delivery timeliness, discount rates, return rates
+Models: models/tpch_sf10/bronze|silver|gold
+Project docs: .claude/project_docs/client-tpch_sf10/
+
+### pharma_sales — Sales Effectiveness
+Database: MAMMOTH_DB
+Schema: MAMMOTH_SCHEMA_pharma_sales_seeds (dev) / PHARMA_SALES_SEEDS (prod)
+Tables: seed_territories, seed_physicians, seed_products, seed_sales_calls, seed_prescriptions
+Scale: 180 rows total across 5 seed tables
+Use case: Pharma sales effectiveness — rep performance, physician scorecard, product performance
+Models: models/pharma_sales/bronze|silver|gold
+Seeds: seeds/pharma_sales/
+Project docs: .claude/project_docs/client-pharma_sales/
+Note: Use ref('seed_*') not source() — seeds loaded via dbt seed command
+
+### champion_homes — Enterprise Performance Management
+Database: TBD (pending client source system access)
+Schema: TBD
+Tables: TBD — see BRD at .claude/project_docs/client-champion_homes/03-requirements/
+Scale: TBD
+Use case: Channel x plant x brand performance management across 9 business functions
+Models: models/champion_homes/bronze|silver|gold (structure ready, build pending)
+Project docs: .claude/project_docs/client-champion_homes/
+
+## Schema Naming
+Dev schemas use MAMMOTH_SCHEMA_ prefix (e.g. MAMMOTH_SCHEMA_tpch_sf10_bronze)
+Prod schemas use clean names (e.g. TPCH_SF10_BRONZE) via generate_schema_name macro
+Macro location: macros/generate_schema_name.sql
 
 ## Git Workflow
 - Branch naming: sk/feature-name
 - Always run dbt_build before committing
 - Use /github-create-pr when work is complete
+- Never commit to main directly
 
 ## On Completing Any Task
 Run /github-create-pr to push a PR with full context summary.
