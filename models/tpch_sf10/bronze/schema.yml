@@ -1,0 +1,177 @@
+version: 2
+
+models:
+  - name: sf10_bronze_orders
+    description: "SF10 raw orders data with renamed columns"
+    columns:
+      - name: order_id
+        description: "Unique order identifier"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to customer"
+        tests:
+          - not_null
+      - name: order_status
+        description: "Order status code"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['O', 'F', 'P']
+      - name: total_price
+        description: "Total order price"
+      - name: order_date
+        description: "Date order was placed"
+      - name: order_priority
+        description: "Order priority level"
+      - name: ship_priority
+        description: "Shipping priority flag"
+      - name: order_comment
+        description: "Order comment text"
+
+  - name: sf10_bronze_lineitem
+    description: "SF10 raw line item data with renamed columns"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - order_id
+              - line_number
+    columns:
+      - name: order_id
+        description: "Foreign key to orders"
+        tests:
+          - not_null
+      - name: part_id
+        description: "Foreign key to part"
+      - name: supplier_id
+        description: "Foreign key to supplier"
+      - name: line_number
+        description: "Line item number within order"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Quantity ordered"
+      - name: extended_price
+        description: "Line item extended price"
+      - name: discount
+        description: "Discount fraction applied"
+      - name: tax
+        description: "Tax fraction applied"
+      - name: return_flag
+        description: "Return status flag"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['R', 'A', 'N']
+      - name: line_status
+        description: "Line item status"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['O', 'F']
+      - name: ship_date
+        description: "Date item was shipped"
+      - name: commit_date
+        description: "Committed delivery date"
+      - name: receipt_date
+        description: "Actual receipt date"
+      - name: ship_mode
+        description: "Shipping mode"
+      - name: line_comment
+        description: "Line item comment"
+
+  - name: sf10_bronze_customer
+    description: "SF10 raw customer data with renamed columns"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: "Customer name"
+      - name: address
+        description: "Customer address"
+      - name: nation_id
+        description: "Foreign key to nation"
+        tests:
+          - not_null
+      - name: phone
+        description: "Customer phone number"
+      - name: account_balance
+        description: "Customer account balance"
+      - name: market_segment
+        description: "Customer market segment"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['AUTOMOBILE', 'BUILDING', 'FURNITURE', 'MACHINERY', 'HOUSEHOLD']
+      - name: customer_comment
+        description: "Customer comment text"
+
+  - name: sf10_bronze_supplier
+    description: "SF10 raw supplier data with renamed columns"
+    columns:
+      - name: supplier_id
+        description: "Unique supplier identifier"
+        tests:
+          - unique
+          - not_null
+      - name: supplier_name
+        description: "Supplier name"
+      - name: address
+        description: "Supplier address"
+      - name: nation_id
+        description: "Foreign key to nation"
+        tests:
+          - not_null
+      - name: phone
+        description: "Supplier phone number"
+      - name: account_balance
+        description: "Supplier account balance"
+      - name: supplier_comment
+        description: "Supplier comment text"
+
+  - name: sf10_bronze_nation
+    description: "SF10 raw nation reference data with renamed columns"
+    columns:
+      - name: nation_id
+        description: "Unique nation identifier"
+        tests:
+          - unique
+          - not_null
+      - name: nation_name
+        description: "Nation name"
+      - name: region_id
+        description: "Foreign key to region"
+      - name: nation_comment
+        description: "Nation comment text"
+
+  - name: sf10_bronze_part
+    description: "SF10 raw part data with renamed columns"
+    columns:
+      - name: part_id
+        description: "Unique part identifier"
+        tests:
+          - unique
+          - not_null
+      - name: part_name
+        description: "Part name"
+      - name: manufacturer
+        description: "Part manufacturer"
+      - name: brand
+        description: "Part brand"
+      - name: part_type
+        description: "Part type/category"
+      - name: size
+        description: "Part size"
+      - name: container
+        description: "Container type"
+      - name: retail_price
+        description: "Retail price"
+      - name: part_comment
+        description: "Part comment text"
