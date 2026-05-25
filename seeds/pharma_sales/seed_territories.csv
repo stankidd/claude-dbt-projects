@@ -1,0 +1,21 @@
+territory_id,territory_name,region,district,rep_id,rep_name,rep_hire_date
+T001,Chicago North,Midwest,Great Lakes,R001,Sarah Mitchell,2019-03-15
+T002,Chicago South,Midwest,Great Lakes,R002,James Torres,2020-07-01
+T003,Detroit Metro,Midwest,Great Lakes,R003,Amanda Chen,2018-11-20
+T004,Cleveland,Midwest,Great Lakes,R004,Michael Davis,2021-02-10
+T005,Indianapolis,Midwest,Central,R005,Lisa Johnson,2019-08-05
+T006,Columbus,Midwest,Central,R006,Robert Kim,2022-01-15
+T007,Cincinnati,Midwest,Central,R007,Jennifer Walsh,2020-04-22
+T008,New York East,Northeast,Metro,R008,David Martinez,2017-06-30
+T009,New York West,Northeast,Metro,R009,Emily Brown,2021-09-01
+T010,Boston,Northeast,New England,R010,Christopher Lee,2018-03-12
+T011,Philadelphia,Northeast,Mid-Atlantic,R011,Patricia Wilson,2019-11-08
+T012,Washington DC,Northeast,Mid-Atlantic,R012,Kevin Thompson,2020-08-19
+T013,Los Angeles North,West,Southern CA,R013,Sandra Garcia,2018-05-14
+T014,Los Angeles South,West,Southern CA,R014,Brian Anderson,2021-03-28
+T015,San Francisco,West,Northern CA,R015,Michelle Taylor,2019-01-07
+T016,Seattle,West,Pacific NW,R016,Daniel White,2022-06-15
+T017,Phoenix,West,Southwest,R017,Laura Harris,2020-10-03
+T018,Denver,West,Mountain,R018,Jason Clark,2019-07-22
+T019,Dallas,South,Texas,R019,Nicole Lewis,2018-09-11
+T020,Houston,South,Texas,R020,Ryan Robinson,2021-05-17

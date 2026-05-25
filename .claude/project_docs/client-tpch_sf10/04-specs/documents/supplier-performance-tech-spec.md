@@ -1,4 +1,4 @@
-# Supplier Performance Analysis — Technical Specification
+﻿# Supplier Performance Analysis â€” Technical Specification
 
 **Client:** TPCH Analytics
 **BRD Source:** `.claude/project_docs/client-tpch_sf10/03-requirements/supplier-performance-brd.md`

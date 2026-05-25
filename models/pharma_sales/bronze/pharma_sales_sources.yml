@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: pharma_sales
+    description: "Pharmaceutical sales effectiveness seed data loaded via dbt seeds"
+    database: MAMMOTH_DB
+    schema: MAMMOTH_SCHEMA_pharma_sales_seeds
+    tables:
+      - name: seed_territories
+        description: "Sales territory and rep master data - one row per territory"
+      - name: seed_physicians
+        description: "Physician master data - one row per physician"
+      - name: seed_products
+        description: "Drug and product catalog - one row per product"
+      - name: seed_sales_calls
+        description: "Sales rep call activity - one row per call"
+      - name: seed_prescriptions
+        description: "Prescription outcomes - one row per prescription written"

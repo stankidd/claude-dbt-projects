@@ -1,8 +1,8 @@
-# pr-from-spec
+ï»¿# pr-from-spec
 
 ## Purpose
 Create a professional, complete GitHub pull request after finishing a
-dbt build. This skill encodes Mammoth Growth's PR standards — branch
+dbt build. This skill encodes Mammoth Growth's PR standards â€” branch
 naming, commit format, PR template, and the due diligence checklist.
 The PR is the final deliverable of every agentic build. It must be
 complete enough for a senior engineer to review and approve without
@@ -38,7 +38,7 @@ Before creating any branch or commit, verify:
 ### Code Quality
 - [ ] All SQL keywords are UPPERCASE
 - [ ] All field names are lowercase_with_underscores
-- [ ] All models use source() or ref() — no hardcoded table names
+- [ ] All models use source() or ref() â€” no hardcoded table names
 - [ ] All CTEs follow the standard Mammoth template
 - [ ] All tables are aliased with meaningful short names
 
@@ -127,10 +127,10 @@ Follow this format exactly:
 feat: build [use-case-name] bronze/silver/gold pipeline
 
 Models built:
-- bronze_model_1 (view) — raw [source] data
-- bronze_model_2 (view) — raw [source] data
-- silver_model_1 (table) — cleaned and joined [entity]
-- gold_model_1 (table) — [business metric] by [grain]
+- bronze_model_1 (view) â€” raw [source] data
+- bronze_model_2 (view) â€” raw [source] data
+- silver_model_1 (table) â€” cleaned and joined [entity]
+- gold_model_1 (table) â€” [business metric] by [grain]
 
 Tests: [N] passing, 0 failing
 Source: [database.schema]
@@ -167,12 +167,12 @@ gh pr create \
   --head sk/use-case-name
 
 ### PR Title Format
-[Use Case Name] — Bronze/Silver/Gold Pipeline
+[Use Case Name] â€” Bronze/Silver/Gold Pipeline
 
 Examples:
-- TPCH Order Analytics — Bronze/Silver/Gold Pipeline
-- Pharma Sales Effectiveness — Bronze/Silver/Gold Pipeline
-- ARR Reporting Rebuild — Bronze/Silver/Gold Pipeline
+- TPCH Order Analytics â€” Bronze/Silver/Gold Pipeline
+- Pharma Sales Effectiveness â€” Bronze/Silver/Gold Pipeline
+- ARR Reporting Rebuild â€” Bronze/Silver/Gold Pipeline
 
 ## PR Body Template
 
@@ -209,7 +209,7 @@ revenue and which have the highest return rates.
 
 ## Models Built
 
-### Bronze Layer (views — raw source data, no business logic)
+### Bronze Layer (views â€” raw source data, no business logic)
 | Model | Source Table | Grain | Columns |
 |-------|-------------|-------|---------|
 | bronze_orders | TPCH_SF10.ORDERS | One row per order | 8 |
@@ -219,13 +219,13 @@ revenue and which have the highest return rates.
 | bronze_nation | TPCH_SF10.NATION | One row per nation | 4 |
 | bronze_part | TPCH_SF10.PART | One row per part | 9 |
 
-### Silver Layer (tables — cleaned, conformed, joined)
+### Silver Layer (tables â€” cleaned, conformed, joined)
 | Model | Depends On | Grain | Key Transformations |
 |-------|-----------|-------|---------------------|
 | silver_orders | bronze_orders, bronze_customer, bronze_nation | One row per order | Customer and nation enrichment |
 | silver_lineitem | bronze_lineitem, bronze_part, bronze_supplier, bronze_nation | One row per line item | Part, supplier, nation enrichment; discounted_price and net_price calculated; is_returned and is_late_shipment derived |
 
-### Gold Layer (tables — business-facing metrics)
+### Gold Layer (tables â€” business-facing metrics)
 | Model | Depends On | Grain | Metrics |
 |-------|-----------|-------|---------|
 | gold_revenue_by_segment | silver_orders, silver_lineitem | One row per market segment | total_orders, total_revenue, avg_order_value, total_items_sold, return_rate_pct |
@@ -349,7 +349,7 @@ After the PR is created and reported:
 1. Do NOT make any further changes to the branch without engineer instruction
 2. If the engineer requests changes: make them on the same branch and push
 3. If tests fail in CI: investigate and fix on the same branch
-4. Do NOT merge the PR — only the engineer merges
+4. Do NOT merge the PR â€” only the engineer merges
 
 ## Common PR Mistakes to Avoid
 

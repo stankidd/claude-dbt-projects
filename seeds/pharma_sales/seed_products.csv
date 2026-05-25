@@ -1,0 +1,9 @@
+product_id,product_name,generic_name,therapeutic_area,drug_class,formulation,dosage_strength,list_price_usd,launch_date,is_specialty
+PROD001,Oncovex,pembrolizumab-mg,Oncology,PD-1 Inhibitor,Injectable,200mg/vial,9500.00,2021-03-15,true
+PROD002,Cardimax,sacubitril-valsartan,Cardiology,ARNi,Oral Tablet,97/103mg,450.00,2020-06-01,false
+PROD003,Respiraclear,dupilumab-rs,Respiratory,IL-4/IL-13 Inhibitor,Injectable,300mg/2mL,3200.00,2022-01-10,true
+PROD004,Oncovex Plus,nivolumab-cb,Oncology,PD-1 Inhibitor,Injectable,240mg/vial,8200.00,2021-09-20,true
+PROD005,Cardiplex,empagliflozin,Cardiology,SGLT2 Inhibitor,Oral Tablet,10mg,280.00,2020-11-15,false
+PROD006,Neuravex,ocrelizumab-nv,Neurology,Anti-CD20,Injectable,300mg/10mL,22000.00,2019-05-08,true
+PROD007,Immunex,ustekinumab-im,Immunology,IL-12/IL-23 Inhibitor,Injectable,45mg/0.5mL,17500.00,2020-02-28,true
+PROD008,Oncovex-SC,pembrolizumab-sc,Oncology,PD-1 Inhibitor,Subcutaneous,200mg/1.6mL,9200.00,2023-01-15,true

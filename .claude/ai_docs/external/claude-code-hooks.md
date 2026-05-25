@@ -1,9 +1,9 @@
-# Claude Code Hooks
+ï»¿# Claude Code Hooks
 
 ## Overview
 Hooks are shell commands that run automatically at specific points in the
 Claude Code lifecycle, regardless of model behavior. Use hooks for anything
-that MUST always execute — linting, formatting, security checks, logging.
+that MUST always execute â€” linting, formatting, security checks, logging.
 
 ## Hook Events
 
@@ -47,10 +47,10 @@ Hooks are defined in .claude/settings.json:
 \\\
 
 ## Hook Environment Variables
-- CLAUDE_TOOL_INPUT — full JSON input to the tool
-- CLAUDE_TOOL_INPUT_FILE_PATH — file path being edited (for Edit/Write tools)
-- CLAUDE_TOOL_OUTPUT — output from the tool (PostToolUse only)
-- CLAUDE_HOOK_EVENT — which event triggered this hook
+- CLAUDE_TOOL_INPUT â€” full JSON input to the tool
+- CLAUDE_TOOL_INPUT_FILE_PATH â€” file path being edited (for Edit/Write tools)
+- CLAUDE_TOOL_OUTPUT â€” output from the tool (PostToolUse only)
+- CLAUDE_HOOK_EVENT â€” which event triggered this hook
 
 ## DBT-Specific Hook Examples
 

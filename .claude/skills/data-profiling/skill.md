@@ -1,8 +1,8 @@
-# data-profiling
+﻿# data-profiling
 
 ## Purpose
 Profile source data tables before building any dbt models. Data profiling
-grounds the tech spec in reality � confirming actual column names, data
+grounds the tech spec in reality — confirming actual column names, data
 types, null rates, cardinality, and data quality issues before any SQL
 is written. A model built on assumed data is a model that will fail.
 
