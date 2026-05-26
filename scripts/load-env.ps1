@@ -3,7 +3,7 @@
 # Usage: . .\load-env.ps1
 
 if (-not (Test-Path ".env")) {
-    Write-Host "ERROR: .env file not found" -ForegroundColor Red
+    Write-Host "ERROR: .env not found" -ForegroundColor Red
     return
 }
 
@@ -17,4 +17,4 @@ Get-Content .env | ForEach-Object {
 }
 
 Write-Host "" 
-Write-Host "All env vars loaded. Run dbt debug to verify." -ForegroundColor Cyan
+Write-Host "Done. Run dbt debug to verify." -ForegroundColor Cyan
