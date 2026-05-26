@@ -15,3 +15,6 @@
 
 ## Skills
 See .claude/skills/ for all available agent skills.
+
+## New Engineers
+See [ONBOARDING.md](ONBOARDING.md) for complete setup instructions.

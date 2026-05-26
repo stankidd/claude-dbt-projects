@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mammoth Growth — Claude Code Tools Reference</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 11px;
+    color: #1a1a1a;
+    background: #fff;
+    padding: 36px 44px;
+    line-height: 1.5;
+  }
+
+  /* ── Cover header ── */
+  .cover {
+    border-bottom: 3px solid #0f4c81;
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+  }
+  .cover h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f4c81;
+    letter-spacing: -0.3px;
+  }
+  .cover .subtitle {
+    font-size: 12px;
+    color: #555;
+    margin-top: 4px;
+  }
+  .cover .meta {
+    font-size: 10px;
+    color: #888;
+    margin-top: 6px;
+  }
+
+  /* ── Section headers ── */
+  .section-header {
+    background: #0f4c81;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 12px;
+    margin: 28px 0 12px 0;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .subsection-header {
+    font-size: 10px;
+    font-weight: 700;
+    color: #0f4c81;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 18px 0 6px 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #d0dce8;
+  }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 6px;
+    font-size: 10.5px;
+  }
+  th {
+    background: #eaf0f8;
+    color: #0f4c81;
+    font-weight: 600;
+    text-align: left;
+    padding: 5px 8px;
+    border: 1px solid #c8d8e8;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  td {
+    padding: 4px 8px;
+    border: 1px solid #e4e8ed;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f8fafc; }
+
+  .tool-name {
+    font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+    font-size: 10px;
+    color: #0f4c81;
+    white-space: nowrap;
+  }
+  .cmd-name {
+    font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+    font-size: 10px;
+    color: #1a6b3a;
+    white-space: nowrap;
+  }
+  .tag {
+    display: inline-block;
+    background: #e8f0f8;
+    color: #0f4c81;
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-right: 3px;
+    white-space: nowrap;
+  }
+  .tag-green  { background: #e6f4ea; color: #1a6b3a; }
+  .tag-purple { background: #f0ebfa; color: #5b2d8e; }
+  .tag-orange { background: #fef3e2; color: #b45309; }
+  .tag-gray   { background: #f1f3f5; color: #555; }
+
+  /* ── Two-column grid for built-in commands ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 24px;
+  }
+
+  /* ── Page breaks ── */
+  @media print {
+    .page-break { page-break-before: always; }
+    body { padding: 24px 32px; }
+    .section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    tr:nth-child(even) td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  .note {
+    font-size: 9.5px;
+    color: #666;
+    font-style: italic;
+    margin: 4px 0 10px 0;
+  }
+
+  footer {
+    margin-top: 36px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 9px;
+    color: #aaa;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     COVER
+══════════════════════════════════════════════ -->
+<div class="cover">
+  <h1>Mammoth Growth — Claude Code Tools Reference</h1>
+  <div class="subtitle">All MCP tools, slash commands, and skills available in this project session</div>
+  <div class="meta">Project: mammoth-test &nbsp;·&nbsp; Engineer: Stan Kidd &nbsp;·&nbsp; Generated: 2026-05-25 &nbsp;·&nbsp; Model: claude-sonnet-4-6</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — MCP TOOLS
+══════════════════════════════════════════════ -->
+<div class="section-header">MCP Tools</div>
+<p class="note">Server: <strong>dbt</strong> &nbsp;·&nbsp; Status: ✓ Connected &nbsp;·&nbsp; dbt=1.11.11, Snowflake adapter=1.11.5 &nbsp;·&nbsp; 47 tools total</p>
+
+<div class="subsection-header">Core Execution</div>
+<table>
+  <tr><th style="width:28%">Tool</th><th>Description</th></tr>
+  <tr><td class="tool-name">mcp__dbt__build</td><td>Run models, tests, snapshots, and seeds in DAG order. Supports node selection, full-refresh, and vars.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__run</td><td>Execute compiled SQL model files against the target database. Materializes models per their configured strategy.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__test</td><td>Run data tests and unit tests. Supports node selection to scope to specific models or tags.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__show</td><td>Execute arbitrary SQL against the warehouse and return results. Primary tool for data inspection and profiling.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__compile</td><td>Generate executable SQL from model, test, and analysis files without running them. Useful for inspecting Jinja output.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__parse</td><td>Parse and validate all project YAML and Jinja. Catches syntax errors before a build attempt.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__clone</td><td>Clone models from one environment to another using zero-copy cloning where supported.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__docs</td><td>Generate the project's documentation website from model descriptions and schema definitions.</td></tr>
+</table>
+
+<div class="subsection-header">Project Exploration</div>
+<table>
+  <tr><th style="width:28%">Tool</th><th>Description</th></tr>
+  <tr><td class="tool-name">mcp__dbt__list</td><td>List project resources — models, tests, seeds, snapshots, sources — with optional type and selector filters.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_all_models</td><td>Return all models with full metadata (materialization, tags, description, columns).</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_all_sources</td><td>Return all source definitions with database, schema, and table metadata.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_all_macros</td><td>List all macros available in the project and installed packages.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_model_details</td><td>Full metadata for a single model — columns, tests, config, compiled SQL.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_model_parents</td><td>Upstream dependencies (parents) of a model in the DAG.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_model_children</td><td>Downstream dependents (children) of a model in the DAG.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_model_health</td><td>Test pass/fail status and freshness health for a model.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_model_performance</td><td>Runtime performance statistics for a model across recent runs.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_lineage</td><td>Full DAG lineage view — upstream and downstream — for a node.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_lineage_dev</td><td>Lineage view scoped to the dev environment.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_node_details_dev</td><td>Node details (config, SQL, tests) in the dev environment context.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_source_details</td><td>Full metadata for a specific source table — freshness, columns, tests.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_macro_details</td><td>Arguments, body, and usage information for a specific macro.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_test_details</td><td>Configuration and failure details for a specific test node.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_seed_details</td><td>Metadata and column definitions for a seed file.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_snapshot_details</td><td>Strategy, unique key, and column metadata for a snapshot.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_exposure_details</td><td>Owner, type, and upstream dependencies for a specific exposure.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_exposures</td><td>List all exposures defined in the project.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_mart_models</td><td>List mart (gold) models — the business-facing output layer.</td></tr>
+</table>
+
+<div class="subsection-header">Semantic Layer &amp; Metrics</div>
+<table>
+  <tr><th style="width:28%">Tool</th><th>Description</th></tr>
+  <tr><td class="tool-name">mcp__dbt__get_dimensions</td><td>List all semantic dimensions defined in the project's semantic models.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_entities</td><td>List all semantic entities (join keys) for the semantic layer.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_semantic_model_details</td><td>Full detail for a specific semantic model — measures, dimensions, entities.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__list_metrics</td><td>List all metrics defined in the project.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__list_saved_queries</td><td>List all saved queries available in the semantic layer.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_metrics_compiled_sql</td><td>Return the compiled SQL that backs a specific metric definition.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__query_metrics</td><td>Query metric values directly via the semantic layer.</td></tr>
+</table>
+
+<div class="subsection-header">dbt Cloud Orchestration</div>
+<table>
+  <tr><th style="width:28%">Tool</th><th>Description</th></tr>
+  <tr><td class="tool-name">mcp__dbt__list_jobs</td><td>List all dbt Cloud jobs in the connected project.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__list_jobs_runs</td><td>List run history for dbt Cloud jobs.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_job_details</td><td>Configuration and schedule details for a specific dbt Cloud job.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_job_run_details</td><td>Status, timing, and step details for a specific job run.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__get_job_run_error</td><td>Error message, failing node, and stack trace for a failed run.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__list_job_run_artifacts</td><td>List artifacts (manifest, run_results) produced by a job run.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__trigger_job_run</td><td>Trigger a dbt Cloud job run on demand.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__retry_job_run</td><td>Retry a failed job run from the point of failure.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__cancel_job_run</td><td>Cancel a currently running dbt Cloud job.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__list_projects</td><td>List all dbt Cloud projects accessible in the connected account.</td></tr>
+</table>
+
+<div class="subsection-header">Documentation Search</div>
+<table>
+  <tr><th style="width:28%">Tool</th><th>Description</th></tr>
+  <tr><td class="tool-name">mcp__dbt__get_product_doc_pages</td><td>Fetch specific pages from the official dbt product documentation.</td></tr>
+  <tr><td class="tool-name">mcp__dbt__search_product_docs</td><td>Full-text search across dbt product documentation.</td></tr>
+</table>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — CUSTOM SLASH COMMANDS
+══════════════════════════════════════════════ -->
+<div class="section-header page-break">Custom Slash Commands</div>
+<p class="note">Defined in <code>.claude/commands/</code> &nbsp;·&nbsp; 29 commands total</p>
+
+<div class="subsection-header">Session Management</div>
+<table>
+  <tr><th style="width:28%">Command</th><th>Description</th></tr>
+  <tr><td class="cmd-name">/all_tools</td><td>List every MCP tool, slash command, and skill available in the current Claude Code session.</td></tr>
+  <tr><td class="cmd-name">/save-context</td><td>Save current session context, progress, and decisions to a file for future reference or handoff.</td></tr>
+  <tr><td class="cmd-name">/clock-out</td><td>End a work session cleanly — save context, commit any WIP, and write a handoff note.</td></tr>
+  <tr><td class="cmd-name">/load_ai_docs</td><td>Conditionally load AI/LLM documentation files relevant to the current task.</td></tr>
+  <tr><td class="cmd-name">/read_conditional_docs</td><td>Load documentation files based on what the current task actually requires.</td></tr>
+</table>
+
+<div class="subsection-header">Git &amp; GitHub</div>
+<table>
+  <tr><th style="width:28%">Command</th><th>Description</th></tr>
+  <tr><td class="cmd-name">/git-create-branch</td><td>Create a new branch following Mammoth naming conventions (<code>sk/feature-name</code>).</td></tr>
+  <tr><td class="cmd-name">/git-commit</td><td>Stage and commit specific files with a descriptive, conventional commit message.</td></tr>
+  <tr><td class="cmd-name">/git-commit-all</td><td>Stage all changed files and commit with a descriptive message.</td></tr>
+  <tr><td class="cmd-name">/github-create-pr</td><td>Create a GitHub pull request using the full Mammoth Growth PR template with context summary.</td></tr>
+  <tr><td class="cmd-name">/pr-from-spec</td><td>Build a complete PR from a finished technical specification — branch, commits, and PR description.</td></tr>
+</table>
+
+<div class="subsection-header">dbt Build Commands</div>
+<table>
+  <tr><th style="width:28%">Command</th><th>Description</th></tr>
+  <tr><td class="cmd-name">/build</td><td>Run <code>dbt build</code> on a specific model or node selector. Validates model before marking work done.</td></tr>
+  <tr><td class="cmd-name">/build-bronze-models</td><td>Build all bronze (raw parse) models defined in a tech spec using the dbt MCP server.</td></tr>
+  <tr><td class="cmd-name">/build-silver-models</td><td>Build all silver (clean and conform) models defined in a tech spec.</td></tr>
+  <tr><td class="cmd-name">/build-gold-models</td><td>Build all gold (metrics and aggregations) models defined in a tech spec.</td></tr>
+  <tr><td class="cmd-name">/build-full-spec</td><td>Build all three layers (bronze → silver → gold) from a tech spec in a single agentic run.</td></tr>
+</table>
+
+<div class="subsection-header">Data Profiling</div>
+<table>
+  <tr><th style="width:28%">Command</th><th>Description</th></tr>
+  <tr><td class="cmd-name">/data-profile</td><td>Profile source tables — row counts, null rates, distinct values, and data samples.</td></tr>
+  <tr><td class="cmd-name">/profile_table</td><td>Full Level 1–4 profile of a single table: shape, grain, nulls, dates, numerics, categoricals.</td></tr>
+  <tr><td class="cmd-name">/profile_column</td><td>Deep profile of a single column — distribution, null rate, cardinality, string lengths.</td></tr>
+  <tr><td class="cmd-name">/profile_column_relationship</td><td>Profile the join quality between two columns — match rate, cardinality, fan-out risk.</td></tr>
+  <tr><td class="cmd-name">/profile_domain</td><td>Profile all distinct values in a categorical column to generate <code>accepted_values</code> test lists.</td></tr>
+  <tr><td class="cmd-name">/profile_table_relationships</td><td>Profile all FK relationships between tables defined in a tech spec.</td></tr>
+  <tr><td class="cmd-name">/profile_plan</td><td>Generate a structured profiling plan for all source tables in a tech spec before building begins.</td></tr>
+</table>
+
+<div class="subsection-header">Planning &amp; Specification</div>
+<table>
+  <tr><th style="width:28%">Command</th><th>Description</th></tr>
+  <tr><td class="cmd-name">/tech_spec_plan</td><td>Convert a Business Requirements Document (BRD) into a full Technical Specification with model designs.</td></tr>
+  <tr><td class="cmd-name">/validate-spec</td><td>Validate a technical specification — check completeness, consistency, and build-readiness.</td></tr>
+  <tr><td class="cmd-name">/bug_plan</td><td>Diagnose a failing dbt model or test and create a structured fix plan.</td></tr>
+  <tr><td class="cmd-name">/chore_plan</td><td>Plan a maintenance or chore task (refactor, syntax update, dependency upgrade).</td></tr>
+  <tr><td class="cmd-name">/metaprompt_workflow</td><td>Generate an optimized Claude prompt for a complex agentic task using meta-prompting techniques.</td></tr>
+</table>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — SKILLS
+══════════════════════════════════════════════ -->
+<div class="section-header page-break">Skills</div>
+<p class="note">Defined in <code>.claude/skills/</code> &nbsp;·&nbsp; Loaded via the Skill tool when a matching command is invoked &nbsp;·&nbsp; 10 skills total</p>
+
+<table>
+  <tr><th style="width:28%">Skill</th><th style="width:15%">Category</th><th>Description</th></tr>
+  <tr>
+    <td class="cmd-name">data-profiling</td>
+    <td><span class="tag">Data Quality</span></td>
+    <td>Four-level profiling framework: (1) Table shape &amp; grain, (2) Column distributions, (3) Relationship/join quality, (4) Data quality flags. Produces structured TABLE PROFILE REPORT output with recommended tests.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">dbt-best-practices</td>
+    <td><span class="tag tag-orange">Standards</span></td>
+    <td>SQL and YAML standards for this project — keyword casing, field naming, CTE preference, ref() usage, materialization rules per layer, and test requirements by column type.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">dbt-planning-router</td>
+    <td><span class="tag tag-orange">Standards</span></td>
+    <td>Routes incoming planning requests to the correct skill (tech-spec-plan, build-from-spec, data-profiling) based on task type and current project state.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">dbt-implementation-validator</td>
+    <td><span class="tag tag-orange">Standards</span></td>
+    <td>Validates a completed dbt implementation against its technical specification — checks model existence, column alignment, test coverage, and materialization correctness.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">build-from-spec</td>
+    <td><span class="tag tag-green">Build</span></td>
+    <td>Orchestrates the full build of a layer (bronze, silver, or gold) from a technical specification. Reads spec → writes SQL → writes schema YAML → runs dbt_build → validates.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">tech-spec-plan</td>
+    <td><span class="tag tag-purple">Planning</span></td>
+    <td>Converts a Business Requirements Document into a full Technical Specification: source mapping, model designs per layer, column definitions, join logic, test recommendations, and grain documentation.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">validate-tech-spec</td>
+    <td><span class="tag tag-purple">Planning</span></td>
+    <td>Reviews a technical spec for completeness and build-readiness — checks that all sources are profiled, grains are defined, joins are validated, and tests are specified.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">pr-from-spec</td>
+    <td><span class="tag tag-green">Build</span></td>
+    <td>Builds a complete GitHub PR from a finished spec — creates branch, stages all model and schema files, writes a conventional commit, and opens the PR with a full context summary.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">git</td>
+    <td><span class="tag tag-gray">Utility</span></td>
+    <td>Git workflow operations following Mammoth conventions: branch naming, commit formatting, and PR creation rules.</td>
+  </tr>
+  <tr>
+    <td class="cmd-name">meta-skill</td>
+    <td><span class="tag tag-gray">Utility</span></td>
+    <td>Skill composition and orchestration — used internally to chain multiple skills together for complex multi-step tasks.</td>
+  </tr>
+</table>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — BUILT-IN COMMANDS
+══════════════════════════════════════════════ -->
+<div class="section-header">Built-in Claude Code Commands</div>
+<p class="note">Native Claude Code CLI commands — available in every session regardless of project configuration</p>
+
+<div class="two-col">
+  <table>
+    <tr><th style="width:38%">Command</th><th>Description</th></tr>
+    <tr><td class="cmd-name">/clear</td><td>Clear the conversation history</td></tr>
+    <tr><td class="cmd-name">/compact</td><td>Compact conversation to save context window</td></tr>
+    <tr><td class="cmd-name">/config</td><td>View or change Claude Code configuration</td></tr>
+    <tr><td class="cmd-name">/cost</td><td>Show token usage and cost for this session</td></tr>
+    <tr><td class="cmd-name">/doctor</td><td>Check Claude Code installation health</td></tr>
+    <tr><td class="cmd-name">/help</td><td>Get help with Claude Code features</td></tr>
+    <tr><td class="cmd-name">/init</td><td>Initialize a CLAUDE.md for the current project</td></tr>
+  </table>
+  <table>
+    <tr><th style="width:38%">Command</th><th>Description</th></tr>
+    <tr><td class="cmd-name">/login</td><td>Log in to Claude Code</td></tr>
+    <tr><td class="cmd-name">/logout</td><td>Log out of Claude Code</td></tr>
+    <tr><td class="cmd-name">/memory</td><td>Edit Claude memory files</td></tr>
+    <tr><td class="cmd-name">/model</td><td>Switch the active Claude model</td></tr>
+    <tr><td class="cmd-name">/permissions</td><td>View and manage tool permissions</td></tr>
+    <tr><td class="cmd-name">/pr-comments</td><td>Fetch comments on a GitHub PR</td></tr>
+    <tr><td class="cmd-name">/status</td><td>Show account and session status</td></tr>
+    <tr><td class="cmd-name">/terminal-setup</td><td>Set up shell integration</td></tr>
+    <tr><td class="cmd-name">/vim</td><td>Toggle vim keybindings</td></tr>
+  </table>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — PROJECT QUICK REFERENCE
+══════════════════════════════════════════════ -->
+<div class="section-header">Project Quick Reference</div>
+<p class="note">From CLAUDE.md — current project configuration at time of generation</p>
+
+<div class="subsection-header">Data Sources</div>
+<table>
+  <tr><th>Client</th><th>Database / Schema</th><th>Scale</th><th>Use Case</th><th>Models Path</th></tr>
+  <tr>
+    <td><strong>tpch_sf1000</strong></td>
+    <td>SNOWFLAKE_SAMPLE_DATA / TPCH_SF1000</td>
+    <td>6B rows (LINEITEM)</td>
+    <td>Order analytics — revenue by segment, supplier nation, part type</td>
+    <td><code>models/tpch_sf1000/</code></td>
+  </tr>
+  <tr>
+    <td><strong>tpch_sf10</strong></td>
+    <td>SNOWFLAKE_SAMPLE_DATA / TPCH_SF10</td>
+    <td>60M rows (LINEITEM)</td>
+    <td>Supplier performance — delivery, discount rates, return rates</td>
+    <td><code>models/tpch_sf10/</code></td>
+  </tr>
+  <tr>
+    <td><strong>pharma_sales</strong></td>
+    <td>MAMMOTH_DB / MAMMOTH_SCHEMA_pharma_sales_seeds</td>
+    <td>180 rows (5 seeds)</td>
+    <td>Sales effectiveness — rep performance, physician scorecard, product performance</td>
+    <td><code>models/pharma_sales/</code></td>
+  </tr>
+  <tr>
+    <td><strong>champion_homes</strong></td>
+    <td>TBD (pending client access)</td>
+    <td>TBD</td>
+    <td>Enterprise performance management — 9 business functions</td>
+    <td><code>models/champion_homes/</code></td>
+  </tr>
+</table>
+
+<div class="subsection-header">Layer Rules</div>
+<table>
+  <tr><th style="width:12%">Layer</th><th style="width:20%">Materialization</th><th>Rule</th></tr>
+  <tr><td><strong>Bronze</strong></td><td>view</td><td>No business logic. Parse and rename raw source columns only. Use <code>source()</code> or <code>ref('seed_*')</code>.</td></tr>
+  <tr><td><strong>Silver</strong></td><td>table</td><td>Clean, conform, join. Apply business rules and filters. Use <code>ref()</code> to bronze models.</td></tr>
+  <tr><td><strong>Gold</strong></td><td>table</td><td>Business metrics and aggregations. Mart-ready. Use <code>ref()</code> to silver models only.</td></tr>
+</table>
+
+<div class="subsection-header">SQL Standards</div>
+<table>
+  <tr><th style="width:30%">Rule</th><th>Detail</th></tr>
+  <tr><td>Keywords</td><td>ALL SQL keywords UPPERCASE (SELECT, FROM, WHERE, JOIN, GROUP BY, etc.)</td></tr>
+  <tr><td>Field names</td><td>all_lowercase_with_underscores</td></tr>
+  <tr><td>Table aliases</td><td>Always alias with a meaningful short name (e.g. <code>o</code> for orders, <code>li</code> for lineitem)</td></tr>
+  <tr><td>Query structure</td><td>CTEs preferred over subqueries</td></tr>
+  <tr><td>Model references</td><td>Always use <code>ref()</code> — never hardcode schema.table names in model SQL</td></tr>
+  <tr><td>Branch naming</td><td><code>sk/feature-name</code></td></tr>
+  <tr><td>Schema prefix (dev)</td><td><code>MAMMOTH_SCHEMA_</code> (e.g. MAMMOTH_SCHEMA_tpch_sf10_bronze)</td></tr>
+</table>
+
+<footer>
+  Mammoth Growth · Claude Code Tools Reference · Generated 2026-05-25 · mammoth-test project · claude-sonnet-4-6
+</footer>
+
+</body>
+</html>
