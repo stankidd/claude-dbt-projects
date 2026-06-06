@@ -1,5 +1,5 @@
 {% docs __overview__ %}
-# Mammoth Growth DBT Project
+# Claude Code DBT Projects
 
 This project follows Medallion Architecture (Bronze -> Silver -> Gold).
 

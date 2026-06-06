@@ -5,6 +5,8 @@ sources:
     description: "Bike share raw data — trips, stations, weather, and inventory"
     database: BIKESHARE
     schema: RAW
+    config:
+      tags: ['bikeshare']
     tables:
       - name: trips_2023_q1
         description: "Trip records for Q1 2023 — one row per trip"
