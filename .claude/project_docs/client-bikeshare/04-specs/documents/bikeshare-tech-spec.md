@@ -6,14 +6,14 @@
 **Date:** May 2026
 **Status:** Ready to Build
 **Time Budget:** 2 hours
-**Target Schema:** CANDIDATE_TEST.CANDIDATE_STAN_KIDD_DEV
+**Target Schema:** BIKESHARE.dbt_skidd
 
 ---
 
 ## Architecture Overview
 
 ```
-CANDIDATE_TEST.RAW
+BIKESHARE.RAW
   trips_2023_q1  trips_2023_q4  stations  station_history  weather_hourly  bike_inventory
         |               |            |            |               |                |
         v               v            v            v               v                v
@@ -471,7 +471,7 @@ The repo already has sources declared. Verify sources.yml has:
 version: 2
 sources:
   - name: raw
-    database: CANDIDATE_TEST
+    database: BIKESHARE
     schema: RAW
     tables:
       - name: trips_2023_q1

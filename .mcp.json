@@ -4,9 +4,10 @@
       "command": "C:\\Users\\Stan\\.local\\bin\\uvx.exe",
       "args": [
         "--env-file",
-        "C:\\Users\\Stan\\Documents\\VScode\\mammoth-test\\.env.mcp",
+        "C:\\Users\\Stan\\Documents\\VScode\\claude-dbt-projects\\.env.mcp",
         "dbt-mcp"
       ]
     }
   }
 }
+

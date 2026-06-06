@@ -105,12 +105,12 @@ The operator has six source tables but no unified analytical layer:
 
 | Source | Table | Rows | Key Challenge |
 |--------|-------|------|---------------|
-| CANDIDATE_TEST.RAW | trips_2023_q1 | 800,000 | Legacy schema, spaces in col names, nanosecond timestamps, no ride_id |
-| CANDIDATE_TEST.RAW | trips_2023_q4 | 800,000 | New schema with rideable_type and member_casual |
-| CANDIDATE_TEST.RAW | stations | 2,303 | Station IDs have decimal suffix (e.g. 5506.14) |
-| CANDIDATE_TEST.RAW | station_history | 460 | previous_station_id has HIST_ prefix |
-| CANDIDATE_TEST.RAW | weather_hourly | 8,760 | Nanosecond timestamps, NOAA condition codes |
-| CANDIDATE_TEST.RAW | bike_inventory | 15,600 | Fleet lifecycle events only (added/retired) |
+| BIKESHARE.RAW | trips_2023_q1 | 800,000 | Legacy schema, spaces in col names, nanosecond timestamps, no ride_id |
+| BIKESHARE.RAW | trips_2023_q4 | 800,000 | New schema with rideable_type and member_casual |
+| BIKESHARE.RAW | stations | 2,303 | Station IDs have decimal suffix (e.g. 5506.14) |
+| BIKESHARE.RAW | station_history | 460 | previous_station_id has HIST_ prefix |
+| BIKESHARE.RAW | weather_hourly | 8,760 | Nanosecond timestamps, NOAA condition codes |
+| BIKESHARE.RAW | bike_inventory | 15,600 | Fleet lifecycle events only (added/retired) |
 
 ---
 

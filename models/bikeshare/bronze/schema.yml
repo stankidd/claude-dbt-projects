@@ -1,0 +1,184 @@
+version: 2
+
+models:
+  - name: bronze_trips_q1
+    description: "Q1 2023 trip records — renamed columns, converted nanosecond timestamps, no business logic"
+    columns:
+      - name: trip_id
+        description: "Surrogate row number ordered by starttime — Q1 has no natural key"
+      - name: started_at
+        description: "Trip start timestamp (converted from nanosecond integer)"
+        tests:
+          - not_null
+      - name: ended_at
+        description: "Trip end timestamp (converted from nanosecond integer)"
+      - name: trip_duration_seconds
+        description: "Pre-calculated trip duration from source"
+      - name: start_station_id
+        description: "Departure station ID — ~3% null in source (dock-less or missing station data)"
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: start_station_name
+        description: "Departure station name"
+      - name: start_lat
+        description: "Departure station latitude"
+      - name: start_lng
+        description: "Departure station longitude"
+      - name: end_station_id
+        description: "Arrival station ID — ~3% null in source (dock-less or missing station data)"
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: end_station_name
+        description: "Arrival station name"
+      - name: end_lat
+        description: "Arrival station latitude"
+      - name: end_lng
+        description: "Arrival station longitude"
+      - name: bike_id
+        description: "Bike identifier"
+      - name: user_type
+        description: "Rider type — 'Subscriber' or 'Customer'"
+      - name: rideable_type
+        description: "Hardcoded 'classic_bike' — Q1 predates e-bikes"
+      - name: quarter
+        description: "Hardcoded 'Q1' for seasonal analysis"
+
+  - name: bronze_trips_q4
+    description: "Q4 2023 trip records — renamed columns, converted nanosecond timestamps, no business logic"
+    columns:
+      - name: trip_id
+        description: "ride_id from Q4 source — NOT unique in source (duplicate IDs confirmed; ~14% of rows)"
+        tests:
+          - not_null
+      - name: started_at
+        description: "Trip start timestamp (converted from nanosecond integer)"
+        tests:
+          - not_null
+      - name: ended_at
+        description: "Trip end timestamp (converted from nanosecond integer)"
+      - name: trip_duration_seconds
+        description: "Derived via DATEDIFF on converted timestamps"
+      - name: start_station_id
+        description: "Departure station ID — may have decimal suffix (e.g. 4600.09); ~0.1% null in source"
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: start_station_name
+        description: "Departure station name"
+      - name: start_lat
+        description: "Departure station latitude"
+      - name: start_lng
+        description: "Departure station longitude"
+      - name: end_station_id
+        description: "Arrival station ID — may have decimal suffix"
+      - name: end_station_name
+        description: "Arrival station name"
+      - name: end_lat
+        description: "Arrival station latitude"
+      - name: end_lng
+        description: "Arrival station longitude"
+      - name: bike_id
+        description: "Bike identifier"
+      - name: user_type
+        description: "Rider type — 'member' or 'casual' (from member_casual source column)"
+      - name: rideable_type
+        description: "Bike type — 'electric_bike' or 'classic_bike'"
+      - name: quarter
+        description: "Hardcoded 'Q4' for seasonal analysis"
+
+  - name: bronze_stations
+    description: "Current station master data — decimal suffix preserved in station_id, stripped in station_id_int"
+    columns:
+      - name: station_id
+        description: "Raw station ID including decimal suffix (e.g. 5506.14)"
+        tests:
+          - unique
+          - not_null
+      - name: station_id_int
+        description: "Station ID with decimal suffix stripped via SPLIT_PART for joining to trips"
+      - name: station_name
+        description: "Station display name"
+      - name: lat
+        description: "Station latitude"
+      - name: lng
+        description: "Station longitude"
+      - name: capacity
+        description: "Number of docks at this station"
+        tests:
+          - not_null
+
+  - name: bronze_station_history
+    description: "Historical station ID mappings — HIST_ prefix preserved in previous_station_id, stripped in clean column"
+    columns:
+      - name: previous_station_id
+        description: "Legacy station ID with HIST_ prefix (e.g. HIST_5506)"
+        tests:
+          - not_null
+      - name: previous_station_id_clean
+        description: "Legacy station ID with HIST_ prefix stripped"
+      - name: current_station_id
+        description: "Current station ID including decimal suffix"
+        tests:
+          - not_null
+      - name: current_station_id_int
+        description: "Current station ID with decimal suffix stripped"
+      - name: station_name
+        description: "Station display name"
+      - name: lat
+        description: "Station latitude"
+      - name: lng
+        description: "Station longitude"
+      - name: retired_at
+        description: "Date the previous station ID was retired"
+
+  - name: bronze_weather_hourly
+    description: "Hourly weather observations — nanosecond timestamp converted, columns renamed from NOAA codes"
+    columns:
+      - name: observed_at
+        description: "Observation timestamp (converted from nanosecond integer)"
+        tests:
+          - unique
+          - not_null
+      - name: observed_hour
+        description: "Truncated to hour for joining to trips"
+      - name: temp_celsius
+        description: "Temperature in Celsius"
+      - name: dewpoint
+        description: "Dew point temperature"
+      - name: humidity_pct
+        description: "Relative humidity percentage"
+      - name: precipitation_mm
+        description: "Precipitation in millimeters"
+      - name: snow_mm
+        description: "Snowfall in millimeters"
+      - name: wind_dir
+        description: "Wind direction in degrees"
+      - name: wind_speed_kmh
+        description: "Wind speed in km/h"
+      - name: pressure_hpa
+        description: "Atmospheric pressure in hPa"
+      - name: condition_code
+        description: "NOAA weather condition code"
+
+  - name: bronze_bike_inventory
+    description: "Bike fleet lifecycle events — one row per added or retired event"
+    columns:
+      - name: bike_id
+        description: "Bike identifier"
+        tests:
+          - not_null
+      - name: event_type
+        description: "Lifecycle event type"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['added', 'retired']
+      - name: event_date
+        description: "Date the lifecycle event occurred"
+      - name: notes
+        description: "Free-text notes on the event"

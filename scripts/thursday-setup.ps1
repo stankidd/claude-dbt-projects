@@ -64,11 +64,11 @@ Write-Host "      DBT_PROJECT_DIR: $projectDir" -ForegroundColor White
 Write-Host "      DBT_PATH: $dbtPath" -ForegroundColor White
 
 # Step 6: Copy Claude scaffolding
-$scaffoldSource = "C:\Users\Stan\Documents\VScode\mammoth-test\.claude"
+$scaffoldSource = "C:\Users\Stan\Documents\VScode\claude-dbt-projects\.claude"
 if (Test-Path $scaffoldSource) {
     Write-Host "[6/8] Copying Claude scaffolding..." -ForegroundColor Yellow
     Copy-Item $scaffoldSource -Destination ".claude" -Recurse -Force
-    Write-Host "[6/8] .claude/ copied from mammoth-test" -ForegroundColor Green
+    Write-Host "[6/8] .claude/ copied from claude-dbt-projects" -ForegroundColor Green
 } else {
     Write-Host "[6/8] WARNING: scaffolding not found at $scaffoldSource" -ForegroundColor Red
 }
@@ -91,7 +91,7 @@ Write-Host "[6b] Unrelated client folders removed" -ForegroundColor Green
 
 # Step 6c: Replace CLAUDE.md with assessment-specific version
 Write-Host "[6c] Installing assessment CLAUDE.md..." -ForegroundColor Yellow
-$assessmentClaude = "C:\Users\Stan\Documents\VScode\mammoth-test\.claude\project_docs\client-bikeshare\sessions\CLAUDE_assessment.md"
+$assessmentClaude = "C:\Users\Stan\Documents\VScode\claude-dbt-projects\.claude\project_docs\client-bikeshare\sessions\CLAUDE_assessment.md"
 if (Test-Path $assessmentClaude) {
     Copy-Item $assessmentClaude ".claude\CLAUDE.md" -Force
     Write-Host "[6c] Assessment CLAUDE.md installed" -ForegroundColor Green

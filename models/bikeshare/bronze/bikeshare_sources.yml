@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Bike share raw data — trips, stations, weather, and inventory"
+    database: BIKESHARE
+    schema: RAW
+    tables:
+      - name: trips_2023_q1
+        description: "Trip records for Q1 2023 — one row per trip"
+      - name: trips_2023_q4
+        description: "Trip records for Q4 2023 — one row per trip"
+      - name: stations
+        description: "Station master data — one row per station"
+      - name: station_history
+        description: "Station attribute change history — one row per station per change event"
+      - name: weather_hourly
+        description: "Hourly weather observations — one row per hour"
+      - name: bike_inventory
+        description: "Bike inventory master — one row per bike"

@@ -56,6 +56,16 @@ models:
         +materialized: table
         +tags: ['gold', 'pharma_sales']
         +schema: pharma_sales_gold
+    bikeshare:
+      bronze:
+        +materialized: view
+        +tags: ['bronze', 'bikeshare']
+      silver:
+        +materialized: table
+        +tags: ['silver', 'bikeshare']
+      gold:
+        +materialized: table
+        +tags: ['gold', 'bikeshare']
 
 seeds:
   mammoth_test:

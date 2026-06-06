@@ -1,0 +1,146 @@
+version: 2
+
+models:
+  - name: silver_trips
+    description: "Unified trip table — Q1 and Q4 unioned, invalid durations filtered, business flags derived"
+    columns:
+      - name: trip_id
+        description: "Trip identifier — Q1 sequential integer, Q4 ride_id (deduplicated)"
+        tests:
+          - unique
+          - not_null
+      - name: started_at
+        description: "Trip start timestamp"
+        tests:
+          - not_null
+      - name: ended_at
+        description: "Trip end timestamp"
+      - name: trip_date
+        description: "Calendar date of trip start"
+      - name: trip_hour
+        description: "Hour of day (0-23) when trip started"
+      - name: trip_dow
+        description: "Day of week — 0=Sunday through 6=Saturday"
+      - name: is_weekday
+        description: "True if trip started Monday through Friday"
+      - name: is_weekend
+        description: "True if trip started Saturday or Sunday"
+      - name: is_am_peak
+        description: "True if trip started between 7am and 9am"
+      - name: is_pm_peak
+        description: "True if trip started between 5pm and 7pm"
+      - name: trip_duration_seconds
+        description: "Trip duration in seconds — filtered to 60–86400"
+      - name: trip_duration_minutes
+        description: "Trip duration in minutes"
+      - name: start_station_id
+        description: "Raw departure station ID (may include decimal suffix)"
+      - name: start_station_id_int
+        description: "Departure station ID with decimal suffix stripped"
+      - name: end_station_id
+        description: "Raw arrival station ID"
+      - name: end_station_id_int
+        description: "Arrival station ID with decimal suffix stripped"
+      - name: start_station_name
+        description: "Departure station name"
+      - name: end_station_name
+        description: "Arrival station name"
+      - name: start_lat
+        description: "Departure station latitude"
+      - name: start_lng
+        description: "Departure station longitude"
+      - name: bike_id
+        description: "Bike identifier"
+      - name: user_type
+        description: "Raw rider type from source — 'Subscriber'/'Customer' (Q1) or 'member'/'casual' (Q4)"
+      - name: is_member
+        description: "True if rider is an annual member (Subscriber or member)"
+        tests:
+          - not_null
+      - name: rideable_type
+        description: "Bike type — 'classic_bike' or 'electric_bike'"
+      - name: quarter
+        description: "Source quarter"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Q1', 'Q4']
+
+  - name: silver_stations
+    description: "Station reference — current stations with history flag resolved"
+    columns:
+      - name: station_id
+        description: "Full station ID including decimal suffix"
+        tests:
+          - unique
+          - not_null
+      - name: station_id_int
+        description: "Station ID with decimal suffix stripped — join key to trips"
+        tests:
+          - not_null
+      - name: station_name
+        description: "Station display name"
+      - name: lat
+        description: "Station latitude"
+      - name: lng
+        description: "Station longitude"
+      - name: capacity
+        description: "Number of docks"
+      - name: has_history
+        description: "True if this station appears in the station history table"
+
+  - name: silver_weather
+    description: "Hourly weather with condition flags — one row per hour for joining to trips"
+    columns:
+      - name: observed_at
+        description: "Observation timestamp"
+        tests:
+          - unique
+          - not_null
+      - name: observed_hour
+        description: "Truncated to hour for joining to silver_trips"
+      - name: temp_celsius
+        description: "Temperature in Celsius"
+      - name: precipitation_mm
+        description: "Precipitation in mm — nulls coalesced to 0"
+      - name: snow_mm
+        description: "Snowfall in mm — nulls coalesced to 0"
+      - name: humidity_pct
+        description: "Relative humidity percentage"
+      - name: wind_speed_kmh
+        description: "Wind speed in km/h"
+      - name: condition_code
+        description: "NOAA condition code"
+      - name: is_raining
+        description: "True if precipitation > 0.1mm"
+        tests:
+          - not_null
+      - name: is_snowing
+        description: "True if snow > 0mm"
+      - name: is_cold
+        description: "True if temperature below 5°C"
+      - name: is_mild
+        description: "True if temp 10–25°C and not raining"
+      - name: weather_category
+        description: "Bucketed condition — Rainy, Snowy, Cold/Dry, Mild/Clear, Hot"
+
+  - name: silver_bike_fleet
+    description: "One row per bike with current fleet status derived from lifecycle events"
+    columns:
+      - name: bike_id
+        description: "Bike identifier"
+        tests:
+          - unique
+          - not_null
+      - name: first_added_date
+        description: "Date the bike was first added to the fleet"
+      - name: retired_date
+        description: "Date the bike was retired — null if still active"
+      - name: is_active
+        description: "True if bike has not been retired"
+        tests:
+          - not_null
+      - name: fleet_age_days
+        description: "Days since the bike was first added"
+      - name: fleet_age_years
+        description: "Years since the bike was first added"

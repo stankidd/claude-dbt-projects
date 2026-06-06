@@ -1,0 +1,115 @@
+version: 2
+
+models:
+  - name: gold_station_performance
+    description: "Station-level trip patterns and commuter/leisure classification — primary novel insight model"
+    columns:
+      - name: station_id_int
+        description: "Station ID (decimal-stripped) — grain key"
+        tests:
+          - unique
+          - not_null
+      - name: station_name
+        description: "Station display name from silver_stations"
+      - name: lat
+        description: "Station latitude"
+      - name: lng
+        description: "Station longitude"
+      - name: capacity
+        description: "Number of docks"
+      - name: total_trips
+        description: "Total departing trips across Q1 and Q4"
+      - name: q1_trips
+        description: "Departing trips in Q1 2023"
+      - name: q4_trips
+        description: "Departing trips in Q4 2023"
+      - name: weekday_trips
+        description: "Departing trips on weekdays (Mon–Fri)"
+      - name: weekend_trips
+        description: "Departing trips on weekends (Sat–Sun)"
+      - name: am_peak_trips
+        description: "Departing trips during AM peak (7am–9am)"
+      - name: pm_peak_trips
+        description: "Departing trips during PM peak (5pm–7pm)"
+      - name: member_trips
+        description: "Departing trips by annual members"
+      - name: casual_trips
+        description: "Departing trips by casual riders"
+      - name: weekday_weekend_ratio
+        description: "Ratio of weekday to weekend departures — higher = more commuter character"
+        tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: peak_hour_pct
+        description: "Share of trips during AM+PM peak hours"
+      - name: member_rate
+        description: "Share of trips by annual members"
+      - name: net_flow
+        description: "Trips departed minus trips arrived — positive = net exporter"
+      - name: station_type
+        description: "Commuter if weekday_weekend_ratio > 1.5 AND peak_hour_pct > 0.25, else Leisure"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Commuter', 'Leisure']
+      - name: seasonal_stability
+        description: "Stable if Q1/Q4 trip counts within 20% of each other, else Seasonal"
+
+  - name: gold_weather_impact
+    description: "Hourly trip counts joined to weather conditions — grain: one row per hour with trips"
+    columns:
+      - name: trip_hour
+        description: "Truncated-to-hour timestamp of trips"
+        tests:
+          - unique
+          - not_null
+      - name: trip_date
+        description: "Calendar date"
+      - name: hour_of_day
+        description: "Hour of day (0–23)"
+      - name: quarter
+        description: "Q1 or Q4"
+      - name: trip_count
+        description: "Total trips departing in this hour"
+      - name: member_trip_count
+        description: "Member trips departing in this hour"
+      - name: temp_celsius
+        description: "Temperature at observation hour"
+      - name: precipitation_mm
+        description: "Precipitation in mm"
+      - name: is_raining
+        description: "True if precipitation > 0.1mm"
+      - name: is_cold
+        description: "True if temperature < 5°C"
+      - name: is_mild
+        description: "True if 10–25°C and not raining"
+      - name: weather_category
+        description: "Bucketed weather condition"
+
+  - name: gold_fleet_health
+    description: "One row per bike with utilization and age metrics"
+    columns:
+      - name: bike_id
+        description: "Bike identifier"
+        tests:
+          - unique
+          - not_null
+      - name: is_active
+        description: "True if bike has not been retired"
+        tests:
+          - not_null
+      - name: fleet_age_days
+        description: "Days since the bike was added to fleet"
+      - name: fleet_age_years
+        description: "Years since the bike was added"
+      - name: total_trips
+        description: "Total trips taken on this bike across Q1 and Q4"
+      - name: q1_trips
+        description: "Trips taken on this bike in Q1"
+      - name: q4_trips
+        description: "Trips taken on this bike in Q4"
+      - name: trips_per_day
+        description: "Average daily trip rate since added to fleet"
+      - name: age_category
+        description: "Fleet age bucket — New (<1yr), Mid (1-3yr), Aging (3-5yr), Old (5yr+)"
